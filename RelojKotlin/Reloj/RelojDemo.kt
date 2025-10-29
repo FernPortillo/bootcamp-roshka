@@ -1,6 +1,5 @@
 package Reloj
 
-
 fun main()
     {
         println("Ingrese el primer reloj")
