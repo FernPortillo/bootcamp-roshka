@@ -1,135 +1,61 @@
+
 // valorCarta (A, 2 ... T, J, Q, K)
 // valorNumerico (1, 2 ... 10, 11, 12, 13)
 // paloCarta (S, C, H, D)
 // Clase abstracta carta -> clase cartaNumerica(1,2,3..)
 // y clase cartaSuperior(T, J, K, Q, A)
 
-
-private val cartasNumericas = listOf('2', '3', '4', '5', '6', '7', '8', '9')
-private val cartasEspeciales = listOf('A', 'T', 'K', 'Q', 'J')
-private val palos = listOf('S', 'D', 'H', 'C')
-
-abstract class Carta(var valorCarta : Char = 'A', var paloCarta : Char = 'S') {
-    abstract var valorNumerico : Int
-    fun printCarta()
-    {
-        println("valor numerico $valorNumerico, valor carta: $valorCarta, palo: $paloCarta")
-    }
-
-    fun returnFormatoCarta(): String
-    {
-        return "${valorCarta}${paloCarta}"
-    }
-}
-
-class CartaNumerica(valorCarta: Char, paloCarta: Char) : Carta(valorCarta, paloCarta) {
-    override var valorNumerico : Int = 0
-        get() = when (valorCarta) {
-            '2' -> 2
-            '3' -> 3
-            '4' -> 4
-            '5' -> 5
-            '6' -> 6
-            '7' -> 7
-            '8' -> 8
-            '9' -> 9
-            else -> error("No tendria que llegar aca ?)")
-        }
-}
-
-class CartaEspecial(valorCarta: Char, paloCarta: Char) : Carta(valorCarta, paloCarta){
-    override var valorNumerico : Int = 0
-        get() = when (valorCarta) {
-            'A' -> 1
-            'T' -> 10
-            'J' -> 11
-            'Q' -> 12
-            'K' -> 13
-            else -> error("Aca tampoco deberia llegar")
-        }
-}
-
-class Baraja()
+enum class Palo (val palo : Char)
 {
-    val baraja : MutableList<Carta> = mutableListOf()
+    SPADES('S'),
+    HEARTS('H'),
+    CLOVERS('C'),
+    DIAMONDS('D');
 
-    // Genera una baraja con las cartas indicadas en el val al inicio
-    // Seria cheto si pudiera usarlo con el getter y en vez que este hardcoded
-    // genere los valores, pero ni idea
-    fun generarBaraja()
-    {
-        for (palo in palos)
-        {
-            for (valor in cartasNumericas)
-            {
-                val carta : CartaNumerica = CartaNumerica(valor, palo)
-                baraja.add(carta)
-            }
-        }
-
-        for (palo in palos)
-        {
-            for (valor in cartasEspeciales)
-            {
-                val carta : CartaEspecial = CartaEspecial(valor, palo)
-                baraja.add(carta)
-            }
-        }
-    }
-
-    // Ordena la baraja por numero
-    fun ordenar()
-    {
-        baraja.sortBy { it.valorNumerico }
-    }
-
-    // Mezcla la baraja
-    fun mezclar()
-    {
-        baraja.shuffle()
-    }
-
-    // Imprime la baraja completa en el formato carta
-    fun printBaraja()
-    {
-        baraja.forEach { carta -> println(carta.returnFormatoCarta()) }
-    }
-
-    // Agrega una carta a la baraja
-    fun addCarta(carta : Carta)
-    {
-        baraja.add(carta)
-    }
-
-    // Elimina una carta de la baraja
-    fun quitarCarta(indexCarta: Int)
-    {
-        if (baraja.isNotEmpty()) baraja.removeAt(indexCarta) else println("No hay mas cartas.")
-    }
-
-    // Metodo que da una carta y la borra como si fuera un stack (casi ?) )
-    fun darCarta() : Carta
-    {
-        // println("agrego la carta ${baraja[baraja.size - 1].returnFormatoCarta()}")
-        quitarCarta(baraja.size-1)
-        return baraja[baraja.size - 1]
-    }
-
+    override fun toString(): String = palo.toString()
 }
 
-//fun checkValue (field : Char, list: List<Char>) : Char
-//{
-//    if (field.lowercaseChar() in list) return field.uppercaseChar()
-//    else error("Ingrese un valor valido ($field) no es un valor valido")
-//}
+enum class Valor (val valorNumerico : Int, val valorCarta : Char)
+{
+    DOS(2, '2'),
+    TRES(3,'3'),
+    CUATRO(4,'4'),
+    CINCO(5,'5'),
+    SEIS(6,'6'),
+    SIETE(7,'7'),
+    OCHO(8,'8'),
+    NUEVE(9,'9'),
+    DIEZ(10,'T'),
+    JACK(11, 'J'),
+    QUEEN(12, 'Q'),
+    KING(13, 'K'),
+    AS(14, 'A');
 
-//fun limpiarBaraja()
-//    {
-//        if (baraja.isNotEmpty())
-//        {
-//            for ((index, carta) in baraja.withIndex())
-//            {
-//                quitarCarta(index)
-//            }
-//        }
-//    }
+    override fun toString(): String = valorCarta.toString()
+}
+
+class Carta(val valorCarta : Valor, val paloCarta : Palo) {
+    var valorNumerico : Int = 0
+        get() = valorCarta.valorNumerico
+
+    // Devuelve 0 si es igual, -1 si es menor y 1 si es positivo
+    fun compareValorCarta(carta : Carta) : Int { return this.valorNumerico.compareTo(carta.valorNumerico) }
+
+    fun cartaEsConsecutiva(carta : Carta) : Boolean {
+        if (carta.valorNumerico == Valor.AS.valorNumerico && this.valorNumerico == Valor.DOS.valorNumerico)
+        {
+            return true
+        }
+        when(compareValorCarta(carta)) {
+            0 -> return false
+            1 -> return this.valorNumerico - carta.valorNumerico == 1
+            else -> return carta.valorNumerico - this.valorNumerico == 1
+        }
+    }
+
+    override fun toString(): String
+    {
+        return "$valorCarta$paloCarta"
+    }
+}
+
