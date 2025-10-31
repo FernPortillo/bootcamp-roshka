@@ -19,30 +19,30 @@ class Desempate(mano1 : Mano, mano2 : Mano, puntaje : Puntajes)
                 else Empate()
             }
             Puntajes.TRIO -> {
-                val trio1 = map1.filter { it.value == 3 }.keys.first()
-                val trio2 = map2.filter { it.value == 3 }.keys.first()
+                val trio1 = filterByValue(map1, 3)
+                val trio2 = filterByValue(map1, 3)
 
                 if (trio1 > trio2) QuienGano("player 1")
                 else if (trio1 < trio2) QuienGano("player 2")
                 else Empate()
             }
             Puntajes.PAR -> {
-                val par1 = map1.filter { it.value == 2 }.keys.first()
-                val par2 = map2.filter { it.value == 2 }.keys.first()
+                val par1 = filterByValue(map1, 2)
+                val par2 = filterByValue(map2, 2)
 
                 if (par1 > par2) QuienGano("player 1")
                 else if (par1 < par2) QuienGano("player 2")
                 else Empate()
             }
             Puntajes.NMA -> {
-                if (m1.getUltimaCarta().valorNumerico > m2.getUltimaCarta().valorNumerico) QuienGano("player 1")
-                else if (m2.getUltimaCarta().valorNumerico > m1.getUltimaCarta().valorNumerico) QuienGano("player 2")
+                if (filterByHighestNumber(m1,m2)) QuienGano("player 1")
+                else if (filterByHighestNumber(m2,m1)) QuienGano("player 2")
                 else Empate()
             }
             Puntajes.POKER ->
             {
-                val poker1 = map1.filter { it.value == 4 }.keys.first()
-                val poker2 = map2.filter { it.value == 4 }.keys.first()
+                val poker1 = filterByValue(map1, 4)
+                val poker2 = filterByValue(map2, 4)
 
                 if (poker1 > poker2) QuienGano("player 1")
                 else if (poker1 < poker2) QuienGano("player 2")
@@ -50,26 +50,26 @@ class Desempate(mano1 : Mano, mano2 : Mano, puntaje : Puntajes)
             }
             Puntajes.ESCALERA_COLOR ->
             {
-                if (m1.getUltimaCarta().valorNumerico > m2.getUltimaCarta().valorNumerico) QuienGano("player 1")
-                else if (m2.getUltimaCarta().valorNumerico > m1.getUltimaCarta().valorNumerico) QuienGano("player 2")
+                if (filterByHighestNumber(m1,m2)) QuienGano("player 1")
+                else if (filterByHighestNumber(m2,m1)) QuienGano("player 2")
                 else Empate()
             }
             Puntajes.ESCALERA ->
             {
-                if (m1.getUltimaCarta().valorNumerico > m2.getUltimaCarta().valorNumerico) QuienGano("player 1")
-                else if (m2.getUltimaCarta().valorNumerico > m1.getUltimaCarta().valorNumerico) QuienGano("player 2")
+                if (filterByHighestNumber(m1,m2)) QuienGano("player 1")
+                else if (filterByHighestNumber(m2,m1)) QuienGano("player 2")
                 else Empate()
             }
             Puntajes.COLOR ->
             {
-                if (m1.getUltimaCarta().valorNumerico > m2.getUltimaCarta().valorNumerico) QuienGano("player 1")
-                else if (m2.getUltimaCarta().valorNumerico > m1.getUltimaCarta().valorNumerico) QuienGano("player 2")
+                if (filterByHighestNumber(m1,m2)) QuienGano("player 1")
+                else if (filterByHighestNumber(m2,m1)) QuienGano("player 2")
                 else Empate()
             }
             Puntajes.FULLHOUSE ->
             {
-                val fh1 = map1.filter { it.value == 3 }.keys.first()
-                val fh2 = map2.filter { it.value == 3 }.keys.first()
+                val fh1 = filterByValue(map1, 3)
+                val fh2 = filterByValue(map2, 3)
 
                 if (fh1 > fh2) QuienGano("player 1")
                 else if (fh1 < fh2) QuienGano("player 2")
@@ -78,4 +78,8 @@ class Desempate(mano1 : Mano, mano2 : Mano, puntaje : Puntajes)
             else -> Empate()
         }
     }
+
+    fun filterByValue(map :Map<Int, Int>, valor : Int) : Int { return map.filter { it.value == valor }.keys.first() }
+    fun filterByHighestNumber(m1 : Mano, m2 : Mano) = m1.getUltimaCarta().valorNumerico > m2.getUltimaCarta().valorNumerico
+
 }
