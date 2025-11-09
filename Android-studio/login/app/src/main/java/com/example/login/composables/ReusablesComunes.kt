@@ -1,45 +1,66 @@
 package com.example.login.composables
 
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material3.Icon
+import androidx.compose.material3.TextField
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.example.login.R
+import com.example.login.composables.Customs.getCustomLoginTextField
 
 
 @Composable
-fun UserField(
+fun visibleField(
     value : String,
+    usedFor : String,
     onValueChange : (String) -> Unit,
-    modifier : Modifier = Modifier)
+    modifier : Modifier)
 {
-    OutlinedTextField(
+    TextField(
         value = value,
         onValueChange = onValueChange,
-        modifier,
-        label = {Text(stringResource(R.string.correo))},
+        label = {Text(usedFor)},
         singleLine = true,
+        colors = getCustomLoginTextField(),
+        modifier = Modifier
+            .padding(top = 50.dp)
+            .fillMaxWidth(),
         )
 }
 @Composable
-fun PassField(
+fun passField(
     value : String,
     onValueChange : (String) -> Unit,
-    modifier : Modifier = Modifier)
+    modifier : Modifier)
 {
-    OutlinedTextField(
+    TextField(
         value = value,
         onValueChange = onValueChange,
-        modifier,
         label = {Text(stringResource(R.string.password))},
         singleLine = true,
-        visualTransformation = PasswordVisualTransformation()
-    )
+        colors = getCustomLoginTextField(),
+        visualTransformation = PasswordVisualTransformation(),
+        trailingIcon = {
+            Icon(
+                imageVector = Icons.Default.ArrowDropDown,
+                contentDescription = null,
+            )
+        },
+        modifier = Modifier.padding(top = 50.dp)
+            .fillMaxWidth(),
+
+        )
 }
 
 
@@ -60,7 +81,7 @@ fun RegisterDialog(
 
         confirmButton = {
             TextButton(onClick = onExitDialog) {
-                Text(stringResource(R.string.ok))
+                Text(stringResource(R.string.entendido))
             }
         }
     )
@@ -85,7 +106,7 @@ fun ErrorDialog(
 
         confirmButton = {
             TextButton(onClick = onExitDialog) {
-                Text(stringResource(R.string.ok))
+                Text(stringResource(R.string.entendido))
             }
         }
     )

@@ -11,15 +11,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.compose.LoginTheme
 import com.example.login.data.SharedPrefsRepository
 import com.example.login.model.LoginViewModel
 import com.example.login.model.RegisterViewModel
-import com.example.login.ui.theme.pantallas.layoutLogin
+import com.example.login.ui.theme.pantallas.loginScreen
 import com.example.login.ui.theme.pantallas.layoutRegistro
 import com.example.login.ui.theme.pantallas.pantallaExito
-import com.example.tiptime.ui.theme.LoginTheme
 
 sealed class Screen{
     object Login : Screen()
@@ -34,25 +33,24 @@ class MainActivity : ComponentActivity() {
         SharedPrefsRepository(applicationContext)
     }
 
-    private val selectorViewModel : ViewModelProvider.Factory by lazy {
-        // ViewModelProvider Factory se usa para pasar argumentos a un viewmodel
-        object : ViewModelProvider.Factory
-        {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return when
-                {
-                    modelClass.isAssignableFrom(LoginViewModel::class.java) ->
-                        LoginViewModel(sharedPreferences) as T
-                    modelClass.isAssignableFrom(RegisterViewModel::class.java) ->
-                        RegisterViewModel(sharedPreferences) as T
-                    else -> throw IllegalAccessError("Error de Viewmodel")
-                }
+    private val loginViewModel : LoginViewModel by viewModels{
+        viewModelFactory {
+            addInitializer(LoginViewModel::class)
+            {
+                LoginViewModel(sharedPreferences)
             }
         }
     }
 
-    private val registerViewModel : RegisterViewModel by viewModels{ selectorViewModel }
-    private val loginViewModel : LoginViewModel by viewModels { selectorViewModel }
+    private val registerViewModel : RegisterViewModel by viewModels{
+        viewModelFactory {
+            addInitializer(RegisterViewModel::class)
+            {
+                RegisterViewModel(sharedPreferences)
+            }
+        }
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // No olvidar de iniciar las sharedPrefs
@@ -81,7 +79,7 @@ fun navigatorApp(
     {
         is Screen.Login ->
         {
-            layoutLogin(
+            loginScreen(
                 viewModel = loginViewModel,
                 onNavegarRegistro = { currentScreen = Screen.Register },
                 onLoginExitoso = { currentScreen = Screen.Exito },

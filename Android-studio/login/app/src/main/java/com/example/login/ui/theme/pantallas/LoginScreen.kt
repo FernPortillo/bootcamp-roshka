@@ -7,10 +7,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -18,27 +18,28 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.compose.LoginTheme
 import com.example.login.composables.ErrorDialog
-import com.example.login.composables.PassField
-import com.example.login.composables.UserField
+import com.example.login.composables.passField
+import com.example.login.composables.visibleField
 import com.example.login.data.SharedPrefsRepository
 import com.example.login.model.LoginUiState
-import com.example.tiptime.ui.theme.LoginTheme
 import com.example.login.R
+import com.example.login.composables.Customs.getTransparentButtonColor
 
 @Composable
-fun layoutLogin(
+fun loginScreen(
     viewModel: LoginViewModel,
     onNavegarRegistro: () -> Unit,
     onLoginExitoso: () -> Unit,
     modifier: Modifier = Modifier
 )
 {
-
     when (viewModel.uiState)
     {
         is LoginUiState.Error -> {
@@ -46,7 +47,7 @@ fun layoutLogin(
                 R.string.error,
                 R.string.correo_pass_incorrecta,
                 onExitDialog = {
-                    viewModel.ponerIdle()
+                    viewModel.resetState()
                 }
             )
         }
@@ -55,31 +56,20 @@ fun layoutLogin(
         else -> {}
     }
 
-    Column(
-        modifier = Modifier.fillMaxWidth()
-            .safeDrawingPadding()
-            .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    )
-    {
-        CardLogin(viewModel, onNavegarRegistro, onLoginExitoso, modifier)
-    }
-}
-@Composable
-private fun CardLogin(
-    viewModel: LoginViewModel,
-    onNavegarRegistro: () -> Unit,
-    onLoginExitoso: () -> Unit,
-    modifier: Modifier)
-{
-    ElevatedCard(
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 6.dp,
-        ),
-        modifier = Modifier)
-    {
-        LoginFields(viewModel,onNavegarRegistro, onLoginExitoso , modifier)
+    Surface(
+        color = MaterialTheme.colorScheme.background
+    ){
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .safeDrawingPadding()
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        )
+        {
+            LoginFields(viewModel, onNavegarRegistro, onLoginExitoso, modifier)
+        }
     }
 }
 
@@ -88,43 +78,44 @@ private fun LoginFields(
     viewModel: LoginViewModel,
     onNavegarRegistro: () -> Unit,
     onLoginExitoso: () -> Unit,
-    modifier: Modifier
-) {
+    modifier: Modifier)
+{
     Column(
         modifier
-            .padding(horizontal = 16.dp)
-            .fillMaxWidth(0.9f),
+            .padding(horizontal = 40.dp)
+            .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
     )
     {
         Text(
-            text = stringResource(R.string.iniciar_sesion),
-            modifier.padding(bottom = 16.dp, top = 40.dp),
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.bodySmall,
+            text = stringResource(R.string.login),
+            modifier.padding( top = 40.dp),
+            textAlign = TextAlign.Left,
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.Bold
         )
 
-        UserField(
+        visibleField(
             viewModel.email,
+            stringResource(R.string.correo),
             onValueChange = { viewModel.email = it },
-            modifier
-                .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
-                .fillMaxWidth()
+            modifier.fillMaxWidth()
+            .padding(bottom = 32.dp)
         )
 
-        PassField(
+        passField(
             viewModel.pass,
             onValueChange = { viewModel.pass = it },
-            modifier
-                .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
-                .fillMaxWidth()
+            modifier.fillMaxWidth()
         )
 
         Button(
             onClick = {
                 viewModel.onLoginButtonClick()
             },
-            modifier.padding(16.dp)
+            modifier
+                .padding(top = 32.dp)
+                .size(170.dp, 48.dp)
         )
         {
             Text(stringResource(R.string.login))
@@ -132,25 +123,18 @@ private fun LoginFields(
 
         Button(
             onClick = onNavegarRegistro,
+            colors = getTransparentButtonColor()
         )
         {
-            Text(stringResource(R.string.registrarse))
+            Text(stringResource(R.string.registrarse),
+                style = MaterialTheme.typography.bodyMedium,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(top = 16.dp))
+            
         }
 
 
     }
-
-//    // Funcion para ver si anda
-//    Button(onClick = {
-//        viewModel.onLoginButtonClick()
-//        Toast.makeText(
-//            context,
-//            "Guardado: ${viewModel.email} / ${viewModel.pass}",
-//            Toast.LENGTH_SHORT
-//        ).show()
-//    }) {
-//        Text("Ver datos")
-//    }
 }
 
 
@@ -168,14 +152,10 @@ fun PreviewLogin()
         val repository = SharedPrefsRepository(context)
         val viewModel = LoginViewModel(repository)
 
-        layoutLogin(
+        loginScreen(
             viewModel,
             onLoginExitoso = { },
             onNavegarRegistro = {}
         )
     }
 }
-
-
-
-

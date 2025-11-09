@@ -38,7 +38,7 @@ class LoginViewModel(private val sharedPrefs : SharedPrefsRepository) : ViewMode
             return
         }
     }
-    fun ponerIdle()
+    fun resetState()
     {
         uiState = LoginUiState.Idle
     }

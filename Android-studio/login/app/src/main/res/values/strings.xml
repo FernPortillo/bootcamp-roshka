@@ -4,12 +4,17 @@
     <string name="error">Error</string>
     <string name="correo_pass_incorrecta">Correo o Pass Incorrecta</string>
     <string name="correo_pass_vacio">Ingrese un Correo o Pass Valida</string>
-    <string name="login">LOGIN</string>
-    <string name="registrarse">REGISTRARSE</string>
-    <string name="registrado">REGISTRADO</string>
+    <string name="login">Iniciar Sesion</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="registrado">Registrado</string>
     <string name="registro_correcto">Registrado de manera exitosa!</string>
-    <string name="iniciar_sesion">INICIAR SESION</string>
-    <string name="ok">OK</string>
-    <string name="correo">Correo...</string>
-    <string name="password">Password...</string>
+    <string name="entendido">Entendido</string>
+    <string name="correo">Email...</string>
+    <string name="user">Usuario...</string>
+    <string name="password">Contraseña...</string>
+    <string name="nombre1">Andres</string>
+    <string name="nombre2">Lucas</string>
+    <string name="nombre3">Tio Carlos</string>
+    <string name="nombre4">Rolando</string>
+    <string name="nombre5">Martha Hermana</string>
 </resources>
