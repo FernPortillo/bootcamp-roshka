@@ -1,5 +1,7 @@
 package com.example.login.model
 
+import android.util.Patterns
+import com.example.login.R
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -26,7 +28,7 @@ class RegisterViewModel(private val sharedPrefs : SharedPrefsRepository) : ViewM
 
     var uiState by mutableStateOf<RegistroUiState>(RegistroUiState.Idle)
         private set
-
+    var errorCode : Int = 0
 
     fun actualizarEmail(email: String)
     {
@@ -44,9 +46,17 @@ class RegisterViewModel(private val sharedPrefs : SharedPrefsRepository) : ViewM
     }
 
     fun onRegisterClick() {
-        if (email.isBlank() || pass.isBlank()) {
+        if (email.isBlank() || pass.isBlank() || userName.isEmpty()) {
             uiState = RegistroUiState.Error
-        } else {
+            errorCode = R.string.error_correo_pass_vacio
+        }
+        else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches())
+        {
+            uiState = RegistroUiState.Error
+            errorCode = R.string.error_tipo_correo
+        }
+
+        else {
             sharedPrefs.saveUser(
                 CredencialesUser(
                     email,

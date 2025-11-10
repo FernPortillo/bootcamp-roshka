@@ -3,7 +3,6 @@
     <string name="bienvenido">Bienvenido</string>
     <string name="error">Error</string>
     <string name="correo_pass_incorrecta">Correo o Pass Incorrecta</string>
-    <string name="correo_pass_vacio">Ingrese un Correo o Pass Valida</string>
     <string name="login">Iniciar Sesion</string>
     <string name="registrarse">Registrarse</string>
     <string name="registrado">Registrado</string>
@@ -12,9 +11,19 @@
     <string name="correo">Email...</string>
     <string name="user">Usuario...</string>
     <string name="password">Contraseña...</string>
+    <string name="error_correo_pass_vacio">Ingrese un Correo o Pass Valida</string>
+    <string name="error_input_incorrecto">Usuario o password incorrecto</string>
+    <string name="error_tipo_correo">Ingrese un correo valido.</string>
     <string name="nombre1">Andres</string>
     <string name="nombre2">Lucas</string>
     <string name="nombre3">Tio Carlos</string>
     <string name="nombre4">Rolando</string>
-    <string name="nombre5">Martha Hermana</string>
+    <string name="nombre5">Martha La del barrio sobrina de fulanito mengano hola este texto es increiblemente largo</string>
+    <string name="nombre6">Monica</string>
+    <string name="nombre7">Fabian</string>
+    <string name="nombre8">Tio Ramiro</string>
+    <string name="nombre9">Susana</string>
+    <string name="nombre10">Juan</string>
+    <string name="nombre11">lucas</string>
+    <string name="nombre12">Valentina</string>
 </resources>

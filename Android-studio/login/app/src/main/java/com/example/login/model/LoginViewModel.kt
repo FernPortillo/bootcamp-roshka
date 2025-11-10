@@ -1,9 +1,11 @@
 package com.example.login.model
 
+import android.util.Patterns
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.example.login.R
 import com.example.login.data.SharedPrefsRepository
 
 sealed interface LoginUiState
@@ -17,6 +19,7 @@ class LoginViewModel(private val sharedPrefs : SharedPrefsRepository) : ViewMode
     var pass by mutableStateOf("")
 
     var uiState by mutableStateOf<LoginUiState>(LoginUiState.Idle)
+    var errorCode : Int = 0
 
     fun onLoginButtonClick() {
         val emailGuardado = sharedPrefs.getUserMail()
@@ -26,16 +29,17 @@ class LoginViewModel(private val sharedPrefs : SharedPrefsRepository) : ViewMode
         if (email.isBlank() || pass.isBlank()) {
             // Llamar error
             uiState = LoginUiState.Error
-            return
+            errorCode =  R.string.error_correo_pass_vacio
         }
-
         if (email == emailGuardado && pass == passGuardada) {
             // Login exitoso
             uiState = LoginUiState.Exito
-        } else {
+            errorCode =  0
+        }
+        else {
             // Login fallido
             uiState = LoginUiState.Error
-            return
+            errorCode = R.string.error_input_incorrecto
         }
     }
     fun resetState()

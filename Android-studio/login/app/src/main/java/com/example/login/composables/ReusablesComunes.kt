@@ -12,9 +12,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TextField
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.example.login.R
 import com.example.login.composables.Customs.getCustomLoginTextField
@@ -44,25 +51,28 @@ fun passField(
     onValueChange : (String) -> Unit,
     modifier : Modifier)
 {
+    var visibilityOff by remember { mutableStateOf(true) }
     TextField(
         value = value,
         onValueChange = onValueChange,
         label = {Text(stringResource(R.string.password))},
         singleLine = true,
         colors = getCustomLoginTextField(),
-        visualTransformation = PasswordVisualTransformation(),
+        visualTransformation = if (visibilityOff) PasswordVisualTransformation() else VisualTransformation.None,
         trailingIcon = {
-            Icon(
-                imageVector = Icons.Default.ArrowDropDown,
-                contentDescription = null,
-            )
+            IconButton(onClick = { visibilityOff = !visibilityOff })
+            {
+                Icon(
+                    painter = painterResource(if (visibilityOff) R.drawable.visibility else R.drawable.visibility_off),
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurface,)
+            }
         },
         modifier = Modifier.padding(top = 50.dp)
             .fillMaxWidth(),
 
         )
 }
-
 
 @Composable
 fun RegisterDialog(
@@ -71,12 +81,10 @@ fun RegisterDialog(
 ) {
     AlertDialog(
         onDismissRequest = {
-            // Dismiss the dialog when the user clicks outside the dialog or on the back
-            // button. If you want to disable that functionality, simply use an empty
-            // onDismissRequest.
+
         },
-        title = { stringResource(R.string.registrado) },
-        text = { stringResource(R.string.registro_correcto) },
+        title = { Text(stringResource(R.string.registrado)) },
+        text = { Text(stringResource(R.string.registro_correcto)) },
         modifier = modifier,
 
         confirmButton = {
@@ -89,19 +97,16 @@ fun RegisterDialog(
 
 @Composable
 fun ErrorDialog(
-    @StringRes title : Int,
-    @StringRes desc : Int,
+    title : Int,
+    desc : Int,
     onExitDialog: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     AlertDialog(
         onDismissRequest = {
-            // Dismiss the dialog when the user clicks outside the dialog or on the back
-            // button. If you want to disable that functionality, simply use an empty
-            // onDismissRequest.
         },
-        title = { stringResource(title) },
-        text = { stringResource(desc) },
+        title = { (Text(stringResource(title))) },
+        text = { (Text(stringResource(desc))) },
         modifier = modifier,
 
         confirmButton = {

@@ -2,6 +2,7 @@ package com.example.login.data
 
 import android.content.Context
 import android.content.SharedPreferences
+import java.io.File
 
 
 data class CredencialesUser(val email: String, val userName: String, val pass: String)
@@ -41,6 +42,18 @@ class SharedPrefsRepository (context : Context)
         private const val KEY_EMAIL = "mail_user"
         private const val KEY_USERNAME = "nombre_user"
         private const val KEY_PASSWORD = "pass_user"
+//        fun resetAppData(context: Context) {
+//            // Borrar SharedPreferences
+//            context.deleteSharedPreferences("my_sp")
+//
+//            // Borrar archivos internos y caché
+//            context.filesDir.deleteRecursively()
+//            context.cacheDir.deleteRecursively()
+//        }
+
     }
 
+
 }
+
+

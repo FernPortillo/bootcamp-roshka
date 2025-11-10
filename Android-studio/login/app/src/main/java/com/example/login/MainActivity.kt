@@ -16,8 +16,9 @@ import com.example.compose.LoginTheme
 import com.example.login.data.SharedPrefsRepository
 import com.example.login.model.LoginViewModel
 import com.example.login.model.RegisterViewModel
-import com.example.login.ui.theme.pantallas.loginScreen
-import com.example.login.ui.theme.pantallas.layoutRegistro
+import com.example.login.ui.theme.pantallas.ContactosLayout
+import com.example.login.ui.theme.pantallas.LoginScreen
+import com.example.login.ui.theme.pantallas.LayoutRegistro
 import com.example.login.ui.theme.pantallas.pantallaExito
 
 sealed class Screen{
@@ -33,6 +34,7 @@ class MainActivity : ComponentActivity() {
         SharedPrefsRepository(applicationContext)
     }
 
+    // Para inicializar un viewModel que necesita parametro
     private val loginViewModel : LoginViewModel by viewModels{
         viewModelFactory {
             addInitializer(LoginViewModel::class)
@@ -79,19 +81,19 @@ fun navigatorApp(
     {
         is Screen.Login ->
         {
-            loginScreen(
+            LoginScreen(
                 viewModel = loginViewModel,
                 onNavegarRegistro = { currentScreen = Screen.Register },
                 onLoginExitoso = { currentScreen = Screen.Exito },
             )
         }
         is Screen.Register -> {
-            layoutRegistro(
+            LayoutRegistro(
                 viewModel = registerViewModel,
                 onNavegarLogin = { currentScreen = Screen.Login }
             )
         }
-        is Screen.Exito -> pantallaExito(modifier = Modifier)
+        is Screen.Exito -> ContactosLayout(modifier = Modifier)
     }
 }
 

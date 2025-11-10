@@ -1,8 +1,6 @@
 package com.example.login.ui.theme.pantallas
 
-import android.view.RoundedCorner
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -39,7 +37,7 @@ import com.example.login.R
 import com.example.login.model.RegistroUiState
 
 @Composable
-fun layoutRegistro(
+fun LayoutRegistro(
     viewModel: RegisterViewModel,
     onNavegarLogin: () -> Unit,
     modifier: Modifier = Modifier
@@ -59,7 +57,7 @@ fun layoutRegistro(
         is RegistroUiState.Error -> {
             ErrorDialog(
                 R.string.error,
-                R.string.correo_pass_vacio,
+                R.string.error_correo_pass_vacio,
                 onExitDialog = { viewModel.resetState() }
             )
         }
@@ -168,7 +166,7 @@ fun PreviewRegister()
         val repository = SharedPrefsRepository(context)
         val viewModel = RegisterViewModel(repository)
 
-        layoutRegistro(
+        LayoutRegistro(
             viewModel,
             onNavegarLogin = { }
         )

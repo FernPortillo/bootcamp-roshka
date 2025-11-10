@@ -33,7 +33,7 @@ import com.example.login.R
 import com.example.login.composables.Customs.getTransparentButtonColor
 
 @Composable
-fun loginScreen(
+fun LoginScreen(
     viewModel: LoginViewModel,
     onNavegarRegistro: () -> Unit,
     onLoginExitoso: () -> Unit,
@@ -45,7 +45,7 @@ fun loginScreen(
         is LoginUiState.Error -> {
             ErrorDialog(
                 R.string.error,
-                R.string.correo_pass_incorrecta,
+                viewModel.errorCode,
                 onExitDialog = {
                     viewModel.resetState()
                 }
@@ -68,7 +68,7 @@ fun loginScreen(
             verticalArrangement = Arrangement.Center
         )
         {
-            LoginFields(viewModel, onNavegarRegistro, onLoginExitoso, modifier)
+            LoginFields(viewModel, onNavegarRegistro, modifier)
         }
     }
 }
@@ -77,7 +77,6 @@ fun loginScreen(
 private fun LoginFields(
     viewModel: LoginViewModel,
     onNavegarRegistro: () -> Unit,
-    onLoginExitoso: () -> Unit,
     modifier: Modifier)
 {
     Column(
@@ -130,13 +129,23 @@ private fun LoginFields(
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(top = 16.dp))
-            
         }
 
 
+//
+//        val context = LocalContext.current
+//        Button(
+//            onClick = { SharedPrefsRepository.resetAppData(context) },
+//            colors = getTransparentButtonColor()
+//        )
+//        {
+//            Text("RESET SAVE DATA",
+//                style = MaterialTheme.typography.bodyMedium,
+//                fontWeight = FontWeight.Bold,
+//                modifier = Modifier.padding(top = 16.dp))
+//        }
     }
 }
-
 
 @Composable
 @Preview(
@@ -152,7 +161,7 @@ fun PreviewLogin()
         val repository = SharedPrefsRepository(context)
         val viewModel = LoginViewModel(repository)
 
-        loginScreen(
+        LoginScreen(
             viewModel,
             onLoginExitoso = { },
             onNavegarRegistro = {}
