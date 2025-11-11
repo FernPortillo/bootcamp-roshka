@@ -27,7 +27,7 @@ import com.example.compose.LoginTheme
 import com.example.login.composables.ErrorDialog
 import com.example.login.composables.passField
 import com.example.login.composables.visibleField
-import com.example.login.data.SharedPrefsRepository
+import com.example.login.repository.SharedPrefsRepository
 import com.example.login.model.LoginUiState
 import com.example.login.R
 import com.example.login.composables.Customs.getTransparentButtonColor
@@ -130,20 +130,6 @@ private fun LoginFields(
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(top = 16.dp))
         }
-
-
-//
-//        val context = LocalContext.current
-//        Button(
-//            onClick = { SharedPrefsRepository.resetAppData(context) },
-//            colors = getTransparentButtonColor()
-//        )
-//        {
-//            Text("RESET SAVE DATA",
-//                style = MaterialTheme.typography.bodyMedium,
-//                fontWeight = FontWeight.Bold,
-//                modifier = Modifier.padding(top = 16.dp))
-//        }
     }
 }
 

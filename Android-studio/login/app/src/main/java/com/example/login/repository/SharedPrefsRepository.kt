@@ -1,8 +1,7 @@
-package com.example.login.data
+package com.example.login.repository
 
 import android.content.Context
 import android.content.SharedPreferences
-import java.io.File
 
 
 data class CredencialesUser(val email: String, val userName: String, val pass: String)

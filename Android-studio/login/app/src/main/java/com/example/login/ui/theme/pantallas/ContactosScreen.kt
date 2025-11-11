@@ -32,6 +32,8 @@ import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,31 +41,37 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.compose.LoginTheme
 import com.example.login.R
-import com.example.login.data.DataSource
-import com.example.login.model.Contacto
-
+import com.example.login.data.ContactoEntity
+import com.example.login.model.ContactosViewModel
 
 
 @Composable
-fun ContactosLayout(dataSource : DataSource = DataSource(), modifier: Modifier = Modifier)
+fun ContactosLayout(onAddContacto: () -> Unit,
+                    viewModel: ContactosViewModel,
+                    modifier: Modifier = Modifier)
 {
+    val contactos by viewModel.allContactos.observeAsState(emptyList())
     Scaffold(
-        bottomBar = { ContactosBottomBar() }
+        bottomBar = { ContactosBottomBar(onAddContacto) }
     )
-    {
-        ContactosList(dataSource.loadContactos())
+    { paddingValues ->
+        ContactosList(contactos,
+            onRemove = { contacto ->
+                viewModel.delete(contacto)},
+            modifier = modifier.padding(paddingValues))
     }
 }
 
 @Composable
-fun ContactosBottomBar(modifier: Modifier = Modifier)
+fun ContactosBottomBar(
+    onAddContacto: () -> Unit,
+    modifier: Modifier = Modifier)
 {
     BottomAppBar(
         actions = {
@@ -78,18 +86,20 @@ fun ContactosBottomBar(modifier: Modifier = Modifier)
         },
             floatingActionButton = {
                 FloatingActionButton(
-                    onClick = { /* Agregar contacto */ },
+                    onClick = { onAddContacto() },
                     containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
                     elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
                 ) {
                     Icon(Icons.Filled.Add, null)
                 }
             },
-        modifier = Modifier.shadow(elevation = 30.dp))
+        modifier = modifier.shadow(elevation = 30.dp))
 }
 
 @Composable
-fun ContactosList(contactos : MutableList<Contacto>, modifier: Modifier = Modifier)
+fun ContactosList(contactos : List<ContactoEntity>,
+                  onRemove: (ContactoEntity) -> Unit,
+                  modifier: Modifier)
 {
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -100,24 +110,20 @@ fun ContactosList(contactos : MutableList<Contacto>, modifier: Modifier = Modifi
     ) {
         items(contactos,
             // Key permite que lazy column borre items segun su key, no su index
-            key = {contacto -> contacto.contactoId})
+            key = {contacto -> contacto.idContacto})
         {
             contacto ->
             SwipeBox(
                 contactoSwipe = contacto,
-                onRemove = {
-                    contactoABorrar -> contactos.remove(contactoABorrar)
-                },
+                onRemove = onRemove,
                 modifier = Modifier.animateItem()
             )
         }
     }
 }
 
-private fun List<Contacto>.remove(contactoABorrar: Contacto) {}
-
 @Composable
-private fun ContactoCard(contacto: Contacto, modifier: Modifier)
+private fun ContactoCard(contacto: ContactoEntity, modifier: Modifier)
 {
     Card(
         modifier = modifier
@@ -132,8 +138,8 @@ private fun ContactoCard(contacto: Contacto, modifier: Modifier)
                 .fillMaxWidth()
         ) {
             Image(
-                painter = painterResource(contacto.imagenContactoDrawableRes),
-                contentDescription = stringResource(contacto.nombreContactoStringResId),
+                painter = painterResource(R.drawable.darwin),
+                contentDescription = contacto.nombre,
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(68.dp)
@@ -142,7 +148,7 @@ private fun ContactoCard(contacto: Contacto, modifier: Modifier)
 
             )
             Text(
-                text = stringResource(contacto.nombreContactoStringResId),
+                text = contacto.nombre,
                 style = MaterialTheme.typography.headlineSmall,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -155,8 +161,8 @@ private fun ContactoCard(contacto: Contacto, modifier: Modifier)
 
 @Composable
 fun SwipeBox(
-    contactoSwipe: Contacto,
-    onRemove : (Contacto) -> Unit,
+    contactoSwipe: ContactoEntity,
+    onRemove : (ContactoEntity) -> Unit,
     modifier: Modifier = Modifier,
 )
 {
@@ -217,6 +223,6 @@ fun SwipeBox(
 fun PreviewContacto()
 {
     LoginTheme{
-        ContactosLayout()
+        //ContactosLayout()
     }
 }

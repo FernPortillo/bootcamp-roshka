@@ -28,7 +28,7 @@ import com.example.login.composables.ErrorDialog
 import com.example.login.composables.passField
 import com.example.login.composables.RegisterDialog
 import com.example.login.composables.visibleField
-import com.example.login.data.SharedPrefsRepository
+import com.example.login.repository.SharedPrefsRepository
 import com.example.login.model.RegisterViewModel
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight

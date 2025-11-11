@@ -1,12 +1,11 @@
 package com.example.login.model
 
-import android.util.Patterns
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.login.R
-import com.example.login.data.SharedPrefsRepository
+import com.example.login.repository.SharedPrefsRepository
 
 sealed interface LoginUiState
 {
