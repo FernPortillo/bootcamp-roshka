@@ -1,7 +1,9 @@
 package com.example.pokedex.model
 
 import android.net.http.HttpException
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresExtension
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -9,6 +11,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.pokedex.PokedexApplication
@@ -23,6 +26,7 @@ sealed interface PokemonUiState
     object Loading : PokemonUiState
 }
 
+@RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
 class PokemonViewmodel(private val pokemonRepository: PokemonRepository) : ViewModel()
 {
 
@@ -32,9 +36,10 @@ class PokemonViewmodel(private val pokemonRepository: PokemonRepository) : ViewM
 
     init
     {
-        getPokemon()
+        getPokemonByName("bulbasaur")
     }
 
+    @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
     fun getPokemon() {
         viewModelScope.launch {
             pokemonUiState = PokemonUiState.Loading
@@ -44,6 +49,31 @@ class PokemonViewmodel(private val pokemonRepository: PokemonRepository) : ViewM
                 Log.d(tag, "Exito, se trajeron ${resultados.results.size} resultados")
                 PokemonUiState.Success("Exito, se trajeron ${resultados.results.size} resultados")
             } catch (e: IOException)
+            {
+                PokemonUiState.Error
+            }
+            catch (e: HttpException)
+            {
+                PokemonUiState.Loading
+            }
+        }
+    }
+
+    fun getPokemonByName(nombrePokemon : String)
+    {
+        viewModelScope.launch{
+            pokemonUiState = PokemonUiState.Loading
+            pokemonUiState = try {
+                val resultado = pokemonRepository.getPokemonByName(nombrePokemon)
+                val tag: String = "TAG_NOMBRE_POKE"
+                Log.d(tag, "Exito, consegui a ${resultado.species.name}, \" +\n" +
+                        "                        \"es el pokemon numero ${resultado.id}, tiene la habilidad ${resultado.abilities[0].ability!!.name} \" +\n" +
+                        "                        \"y es de tipo ${resultado.types[0].type.name} y ${resultado.types[1].type.name}\"")
+                PokemonUiState.Success("Exito, consegui a ${resultado.species.name}, " +
+                        "es el pokemon numero ${resultado.id}, tiene la habilidad ${resultado.abilities[0].ability!!.name} " +
+                        "y es de tipo ${resultado.types[0].type.name} y ${resultado.types[1].type.name}")
+            }
+            catch (e: IOException)
             {
                 PokemonUiState.Error
             }
