@@ -16,12 +16,14 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.pokedex.PokedexApplication
 import com.example.pokedex.data.PokemonRepository
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import java.io.IOException
 
 sealed interface PokemonUiState
 {
-    data class Success(val pokemon : String): PokemonUiState
+    data class SuccessList(val pokemon : PokemonAPI): PokemonUiState
+    data class SuccessDetail(val pokemon : PokemonData) : PokemonUiState
     object Error: PokemonUiState
     object Loading : PokemonUiState
 }
@@ -29,14 +31,13 @@ sealed interface PokemonUiState
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
 class PokemonViewmodel(private val pokemonRepository: PokemonRepository) : ViewModel()
 {
-
     var pokemonUiState: PokemonUiState by mutableStateOf(PokemonUiState.Loading)
         private set
 
 
     init
     {
-        getPokemonByName("bulbasaur")
+        getPokemonById("9")
     }
 
     @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
@@ -47,7 +48,7 @@ class PokemonViewmodel(private val pokemonRepository: PokemonRepository) : ViewM
                 val resultados = pokemonRepository.getPokemon()
                 val tag: String = "MY_TAG"
                 Log.d(tag, "Exito, se trajeron ${resultados.results.size} resultados")
-                PokemonUiState.Success("Exito, se trajeron ${resultados.results.size} resultados")
+                PokemonUiState.SuccessList(resultados)
             } catch (e: IOException)
             {
                 PokemonUiState.Error
@@ -69,9 +70,26 @@ class PokemonViewmodel(private val pokemonRepository: PokemonRepository) : ViewM
                 Log.d(tag, "Exito, consegui a ${resultado.species.name}, \" +\n" +
                         "                        \"es el pokemon numero ${resultado.id}, tiene la habilidad ${resultado.abilities[0].ability!!.name} \" +\n" +
                         "                        \"y es de tipo ${resultado.types[0].type.name} y ${resultado.types[1].type.name}\"")
-                PokemonUiState.Success("Exito, consegui a ${resultado.species.name}, " +
-                        "es el pokemon numero ${resultado.id}, tiene la habilidad ${resultado.abilities[0].ability!!.name} " +
-                        "y es de tipo ${resultado.types[0].type.name} y ${resultado.types[1].type.name}")
+                PokemonUiState.SuccessDetail(resultado)
+            }
+            catch (e: IOException)
+            {
+                PokemonUiState.Error
+            }
+            catch (e: HttpException)
+            {
+                PokemonUiState.Loading
+            }
+        }
+    }
+
+    fun getPokemonById(idPokemon : String)
+    {
+        viewModelScope.launch{
+            pokemonUiState = PokemonUiState.Loading
+            pokemonUiState = try {
+                val resultado = pokemonRepository.getPokemonByName(idPokemon)
+                PokemonUiState.SuccessDetail(resultado)
             }
             catch (e: IOException)
             {

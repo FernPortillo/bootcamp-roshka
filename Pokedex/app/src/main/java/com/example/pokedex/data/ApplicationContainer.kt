@@ -16,7 +16,7 @@ interface AppContainer
 
 class DefaultAppContainer : AppContainer
 {
-    private  val BASE_URL = "https://pokeapi.co/api/v2/pokemon/"
+    private  val BASE_URL = "https://pokeapi.co/api/v2/"
 
     private val json = Json {ignoreUnknownKeys = true}
 

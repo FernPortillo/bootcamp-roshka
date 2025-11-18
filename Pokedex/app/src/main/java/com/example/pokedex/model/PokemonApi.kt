@@ -31,14 +31,10 @@ data class Result (
 @Serializable
 data class PokemonData (
     val abilities: List<Ability>,
-
     val height: Long,
-
     val id: Long,
-
     @SerialName("past_types")
     val pastTypes: JsonArray,
-
     val species: Species,
     val sprites: Sprites,
     val types: List<Type>,

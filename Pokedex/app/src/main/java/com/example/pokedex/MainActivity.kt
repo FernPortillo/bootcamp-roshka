@@ -57,41 +57,6 @@ fun PokemonApp() {
 }
 
 
-@Composable
-fun HomeScreen(
-    pokemonUiState: PokemonUiState,
-    modifier: Modifier = Modifier,
-) {
-    when (pokemonUiState) {
-        is PokemonUiState.Loading -> PantallaLoading(modifier = modifier.fillMaxSize())
-        is PokemonUiState.Success -> PantallaExito(
-            pokemonUiState.pokemon, modifier = modifier.fillMaxWidth()
-        )
-        is PokemonUiState.Error -> PantallaError(modifier = modifier.fillMaxSize())
-    }
-}
-
-@Composable
-fun PantallaLoading(modifier: Modifier) {
-    Text(
-        text = "cargando"
-    )
-}
-
-@Composable
-fun PantallaExito(pokemon: String, modifier: Modifier) {
-    Text(
-        text = pokemon
-    )
-}
-
-@Composable
-fun PantallaError(modifier: Modifier) {
-    Text(
-            text = "error"
-    )
-}
-
 
 @RequiresExtension(extension = Build.VERSION_CODES.S, version = 7)
 @Preview(showBackground = true)
