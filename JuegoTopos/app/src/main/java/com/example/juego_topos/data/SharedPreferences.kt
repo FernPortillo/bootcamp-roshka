@@ -32,7 +32,7 @@ class SharedPreferences(context : Context)
 
     companion object
     {
-]        private const val KEY_USERNAME = "nombre_user"
+        private const val KEY_USERNAME = "nombre_user"
         private const val KEY_PASSWORD = "pass_user"
     }
 }

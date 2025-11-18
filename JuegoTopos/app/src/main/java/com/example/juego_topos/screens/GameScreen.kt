@@ -1,6 +1,5 @@
 package com.example.juego_topos.screens
 
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.foundation.Canvas
@@ -43,7 +42,8 @@ import com.example.juego_topos.ui.theme.GameTheme
 
 @Composable
 fun GameScreen(
-    viewModel : JuegoViewModel = viewModel()
+    viewModel : JuegoViewModel,
+    onNavegarAtras :() -> Unit
 )
 {
 
@@ -57,10 +57,10 @@ fun GameScreen(
     )
     {
         val tiempo by viewModel.tiempoPasado.collectAsState()
-        TopBar(tiempo, viewModel)
+        TopBar(tiempo, viewModel, onNavegarAtras)
         GameSection(viewModel)
         if(viewModel.botonVisible){
-            Button(onClick = { viewModel.startJuego() })
+            Button(onClick = { viewModel.startGame() })
             {
                 Text("Jugar")
             }
@@ -70,14 +70,16 @@ fun GameScreen(
 }
 
 @Composable
-fun TopBar(tiempo : Int, viewModel: JuegoViewModel, modifier: Modifier = Modifier)
+fun TopBar(tiempo : Int, viewModel: JuegoViewModel,
+           onNavegarAtras: () -> Unit,
+           modifier: Modifier = Modifier)
 {
     Row(horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier.fillMaxWidth())
     {
         IconButton(
-            onClick = {}
+            onClick = {onNavegarAtras}
         )
         {
             Icon(
@@ -98,13 +100,11 @@ fun TopBar(tiempo : Int, viewModel: JuegoViewModel, modifier: Modifier = Modifie
     }
 }
 
-
-
-
 @Composable
 fun GameSection(viewModel : JuegoViewModel)
 {
-    val topo = ImageBitmap.imageResource(id = R.drawable.resetti)
+    // TODO ? hacer que el sprite varie
+    val topo = ImageBitmap.imageResource(id = R.drawable.diglett)
     Canvas(Modifier
         .fillMaxWidth(0.95f)
         .fillMaxHeight(0.85f)
@@ -150,6 +150,6 @@ fun GameSection(viewModel : JuegoViewModel)
 fun PreviewGame()
 {
     GameTheme{
-        GameScreen()
+        // GameScreen()
     }
 }

@@ -1,11 +1,11 @@
-package com.example.juego_topos.data;
+package com.example.juego_topos.data
 
 
-import androidx.room.Dao;
+import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
-import androidx.room.Query;
-import kotlinx.coroutines.flow.Flow;
+import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PuntajeDAO {

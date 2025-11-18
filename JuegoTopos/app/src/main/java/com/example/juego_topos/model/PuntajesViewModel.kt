@@ -1,5 +1,7 @@
 package com.example.juego_topos.model
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -16,6 +18,7 @@ sealed interface PuntajesUiState
 {
     data class Success(val puntajes: List<PuntajeEntity>): PuntajesUiState
     object Error
+    object Idle
 }
 
 class PuntajesViewModel(val repository: PuntajesRepository) : ViewModel()
@@ -28,20 +31,6 @@ class PuntajesViewModel(val repository: PuntajesRepository) : ViewModel()
             repository.puntajesAltos.collect { puntajes ->
                 puntajesAltos.value = PuntajesUiState.Success(puntajes)
             }
-        }
-    }
-
-    fun insertar(puntaje : PuntajeEntity)
-    {
-        viewModelScope.launch{
-            repository.insert(puntaje)
-        }
-    }
-
-    fun borrar(puntaje: PuntajeEntity)
-    {
-        viewModelScope.launch {
-            repository.delete(puntaje)
         }
     }
 }
