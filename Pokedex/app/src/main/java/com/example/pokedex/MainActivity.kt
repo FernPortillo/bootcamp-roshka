@@ -50,9 +50,7 @@ fun PokemonApp() {
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.fillMaxSize()
     ){
-        HomeScreen(
-            pokemonUiState = pokemonViewmodel.pokemonUiState,
-        )
+        HomeScreen(pokemonViewmodel)
     }
 }
 
