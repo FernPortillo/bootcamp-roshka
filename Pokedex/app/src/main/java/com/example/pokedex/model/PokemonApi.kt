@@ -49,7 +49,6 @@ data class Ability (
 
     @SerialName("is_hidden")
     val isHidden: Boolean,
-
     val slot: Long
 )
 

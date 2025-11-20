@@ -19,8 +19,7 @@ import java.io.IOException
 
 sealed interface PokemonUiState
 {
-    data class Success(val pokemon : PokemonAPI): PokemonUiState
-    data class SuccessDetail(val pokemonDetail : List<PokemonData>) : PokemonUiState
+    data class Success(val pokemon : List<Result>): PokemonUiState
     object Error: PokemonUiState
     object Loading : PokemonUiState
 }
@@ -30,6 +29,10 @@ class PokemonViewmodel(private val pokemonRepository: PokemonRepository) : ViewM
 {
     var pokemonUiState: PokemonUiState by mutableStateOf(PokemonUiState.Loading)
         private set
+
+    private val _pokemonDetailsCache = mutableMapOf<String, PokemonData>()
+    val pokemonDetailsCache: Map<String, PokemonData> = _pokemonDetailsCache
+
 
     init
     {
@@ -42,7 +45,7 @@ class PokemonViewmodel(private val pokemonRepository: PokemonRepository) : ViewM
             pokemonUiState = PokemonUiState.Loading
             pokemonUiState = try {
                 val resultados = pokemonRepository.getPokemon()
-                PokemonUiState.Success(resultados)
+                PokemonUiState.Success(resultados.results)
             } catch (_: IOException)
             {
                 PokemonUiState.Error
@@ -52,6 +55,21 @@ class PokemonViewmodel(private val pokemonRepository: PokemonRepository) : ViewM
                 PokemonUiState.Loading
             }
         }
+    }
+
+    fun loadPokemonDetails(pokemonUrl : String)
+    {
+        if (pokemonDetailsCache.containsKey(pokemonUrl)) return
+        viewModelScope.launch()
+        {
+            try {
+                val detail = pokemonRepository.getPokemonByUrl(pokemonUrl)
+                _pokemonDetailsCache[pokemonUrl] = detail
+            }
+            catch (_: Exception){}
+        }
+
+
     }
 
 //    fun getPokemonById(idPokemon : String)
@@ -73,19 +91,19 @@ class PokemonViewmodel(private val pokemonRepository: PokemonRepository) : ViewM
 //        }
 //    }
 
-    fun loadPokemonDetails(pokemonList: PokemonAPI) {
-        viewModelScope.launch {
-            pokemonUiState = PokemonUiState.Loading
-            try {
-                val detalles = pokemonList.results.map { pokemonItem ->
-                    pokemonRepository.getPokemonByUrl(pokemonItem.url)
-                }
-                pokemonUiState = PokemonUiState.SuccessDetail(detalles)
-            } catch (_: IOException) {
-                pokemonUiState = PokemonUiState.Error
-            }
-        }
-    }
+//    fun loadPokemonDetails(pokemonList: PokemonAPI) {
+//        viewModelScope.launch {
+//            pokemonUiState = PokemonUiState.Loading
+//            try {
+//                val detalles = pokemonList.results.map { pokemonItem ->
+//                    pokemonRepository.getPokemonByUrl(pokemonItem.url)
+//                }
+//                pokemonUiState = PokemonUiState.SuccessDetail(detalles)
+//            } catch (_: IOException) {
+//                pokemonUiState = PokemonUiState.Error
+//            }
+//        }
+//    }
 
 
 
