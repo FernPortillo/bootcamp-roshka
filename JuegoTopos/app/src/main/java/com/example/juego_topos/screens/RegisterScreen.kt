@@ -1,6 +1,5 @@
 package com.example.juego_topos.screens
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -20,23 +19,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.juego_topos.composables.PasswordTextFieldConSelectorVisibilidad
 import com.example.juego_topos.composables.VisibleTextField
-import com.example.juego_topos.data.SharedPreferences
 import com.example.juego_topos.model.AuthUIState
 import com.example.juego_topos.model.AuthViewmodel
-import com.example.juego_topos.repository.SharedPrefsRepository
-import com.example.juego_topos.ui.theme.GameTheme
 
 
 @Composable
 fun LayoutRegistro(
     viewModel: AuthViewmodel,
-    onNavegarAtras: () -> Unit,
+    mainNavController : NavHostController,
     modifier: Modifier = Modifier
 )
 {
@@ -44,7 +38,7 @@ fun LayoutRegistro(
     {
         is AuthUIState.Error -> {/*Dialogo Error*/}
         is AuthUIState.Exito -> {/*Dialogo Exito*/}
-        is AuthUIState.Idle -> {}
+        else -> {}
     }
     Surface()
     {
@@ -57,7 +51,7 @@ fun LayoutRegistro(
             verticalArrangement = Arrangement.Center
         )
         {
-            RegistroTextFields(viewModel, onNavegarAtras, modifier)
+            RegistroTextFields(viewModel, mainNavController, modifier)
         }
     }
 }
@@ -66,7 +60,7 @@ fun LayoutRegistro(
 @Composable
 fun RegistroTextFields(
     viewModel: AuthViewmodel,
-    onNavegarAtras: () -> Unit,
+    mainNavController: NavHostController,
     modifier: Modifier
 )
 {
@@ -85,7 +79,7 @@ fun RegistroTextFields(
             verticalAlignment = Alignment.CenterVertically
         )
         {
-            IconButton(onClick = onNavegarAtras)
+            IconButton(onClick = { mainNavController.popBackStack() })
             {
                 Icon(
                     imageVector = Icons.AutoMirrored.Default.ArrowBack,
@@ -99,40 +93,19 @@ fun RegistroTextFields(
         VisibleTextField(
             viewModel.regUser,
             "Usuario",
-            onValueChange = { viewModel.updateUser(it) }
+            onValueChange = { viewModel.updateRegUser(it) }
         )
 
         PasswordTextFieldConSelectorVisibilidad(
             valor = viewModel.regPassword,
-            onValueChange = {viewModel.updatePass(it)}
+            onValueChange = {viewModel.updateRegPass(it)}
         )
 
         Button(
-            onClick = { viewModel.onButtonRegisterClick() },
+            onClick = { viewModel.onButtonRegisterClick()
+                      mainNavController.popBackStack()},
             modifier = modifier.padding(top = 32.dp),
             content = { Text("Registrarse") }
-        )
-    }
-}
-
-@SuppressLint("ViewModelConstructorInComposable")
-@Composable
-@Preview(
-    showSystemUi = true,
-    showBackground = true,
-    device = Devices.PIXEL_7_PRO)
-fun PreviewRegister()
-{
-    GameTheme{
-        val context = LocalContext.current
-        val sp = SharedPreferences(context)
-        val repository = SharedPrefsRepository(sp)
-        val viewModel = AuthViewmodel(repository)
-
-        LayoutRegistro(
-            viewModel,
-            onNavegarAtras = {},
-            modifier = Modifier
         )
     }
 }

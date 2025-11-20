@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("com.google.devtools.ksp") version "2.0.21-1.0.27"
+    id("kotlin-parcelize")
+    id("kotlin-android")
 }
 
 android {
@@ -43,8 +45,10 @@ android {
 }
 
 dependencies {
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation(libs.androidx.navigation.compose)
     val room_version = "2.8.3"
-
     implementation("androidx.room:room-runtime:$room_version")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.1")
     ksp("androidx.room:room-compiler:$room_version")

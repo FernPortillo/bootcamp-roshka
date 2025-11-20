@@ -2,17 +2,17 @@ package com.example.juego_topos.model
 
 import android.util.Log
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.unit.IntSize
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.juego_topos.data.PuntajeEntity
-import com.example.juego_topos.repository.PuntajesRepository
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlin.random.Random
@@ -21,40 +21,30 @@ import kotlin.random.Random
 private const val RESPAWN = 500L
 private const val TICK = 350L
 
-class JuegoViewModel(val repository : PuntajesRepository) : ViewModel()
+class JuegoViewModel() : ViewModel()
 {
-    // TODO integrar que cuando se termine una sesion se guarde tu puntaje
     val size = 300
+    var nombre : String = ""
     var isCorriendo = false
-    private set
+    private var _puntos = MutableStateFlow(0)
     private val _elapsedTime = MutableStateFlow(30)
+    private val _estaJugando = MutableSharedFlow<Unit>()
     val tiempoPasado = _elapsedTime.asStateFlow()
+    val puntos = _puntos.asStateFlow()
+    val estaJugando : SharedFlow<Unit> = _estaJugando.asSharedFlow()
     var botonVisible by mutableStateOf(true)
     var canvasSize by mutableStateOf(IntSize(0,0))
-    var puntos by mutableStateOf(0)
-    var posX by mutableStateOf(150)
-    var posY by mutableStateOf(150)
+    var posX by mutableIntStateOf(150)
+    var posY by mutableIntStateOf(150)
 
-    fun insertar(puntaje : PuntajeEntity)
-    {
-        viewModelScope.launch{
-            repository.insert(puntaje)
-        }
-    }
 
-    fun borrar(puntaje: PuntajeEntity)
-    {
-        viewModelScope.launch {
-            repository.delete(puntaje)
-        }
-    }
-
-    fun startGame() {
-        puntos = 0
+    fun startGame(user: String) {
+        _puntos.value = 0
         _elapsedTime.value = 30
         botonVisible = false
         isCorriendo = true
-        empezarTimer()
+        nombre = user
+        empezarTimer(nombre)
     }
 
     fun updatePosition() {
@@ -67,25 +57,19 @@ class JuegoViewModel(val repository : PuntajesRepository) : ViewModel()
 
     fun sumarPunto()
     {
-        puntos++
+        _puntos.value++
         updatePosition()
         Log.d("Puntos", "Sume un punto, tengo $puntos puntos")
     }
 
-    fun terminarJuego()
+    fun terminarJuego(user : String)
     {
-        if (isCorriendo)
-        {
-            return
-        }
-
-        viewModelScope.launch()
-        {
-        }
-
+        isCorriendo = false
+        botonVisible = true
+        Log.d("Tag3", "termino el juego, hiciste $puntos $user")
     }
 
-    private fun empezarTimer()
+    private fun empezarTimer(user : String)
     {
         viewModelScope.launch()
         {
@@ -94,8 +78,9 @@ class JuegoViewModel(val repository : PuntajesRepository) : ViewModel()
                 delay(1000L)
                 _elapsedTime.value -= 1
             }
-            isCorriendo = false
-            botonVisible = true
+            Log.d("tag4", "Termino el juego, agrega el coso a la db")
+            _estaJugando.emit(Unit)
+            terminarJuego(user)
         }
 
         viewModelScope.launch {
@@ -111,22 +96,8 @@ class JuegoViewModel(val repository : PuntajesRepository) : ViewModel()
                 }
             }
         }
+
     }
 }
 
-data class PuntajeState(
-    val puntos : Int = 0,
-    val nombre : String = ""
-)
 
-class JuegoViewModelFactory(private val repository: PuntajesRepository) : ViewModelProvider.Factory
-{
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(JuegoViewModel::class.java))
-        {
-            @Suppress("UNCHECKED_CAST")
-            return JuegoViewModel(repository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}

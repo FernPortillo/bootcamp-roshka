@@ -1,30 +1,63 @@
 package com.example.juego_topos.screens
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.juego_topos.data.PuntajeEntity
-import com.example.juego_topos.model.PuntajesUiState
+import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.createGraph
+import com.example.juego_topos.navigator.Screen
+import com.example.juego_topos.composables.BottomNavBar
+import com.example.juego_topos.model.AuthViewmodel
+import com.example.juego_topos.model.ListaPokemonViewModel
 import com.example.juego_topos.model.PuntajesViewModel
 
 @Composable
-fun LayoutMainScreen(
-    viewModel: PuntajesViewModel,
-    onNavigateToPokedex :() -> Unit,
-    onNavigateToJuego :() -> Unit,
-)
+fun MainScreen(authViewmodel: AuthViewmodel,
+               puntajesViewModel: PuntajesViewModel,
+               listaPokemonViewModel: ListaPokemonViewModel,
+               nombre: String)
 {
-    val puntajes by viewModel.puntajes.collectAsState()
-    when (val state = puntajes)
-    {
-        is PuntajesUiState.Success ->
+    val mainScreenNavController = rememberNavController()
+    val user = nombre
+    Scaffold(
+        modifier = Modifier
+            .fillMaxSize(),
+        bottomBar = { BottomNavBar(mainScreenNavController) }
+    )
+    { innerPadding ->
+
+        val graph =
+            mainScreenNavController.createGraph(startDestination = Screen.Puntajes.ruta)
             {
-            Text("${state.puntajes.size} son los puntajes")
+                composable(Screen.Puntajes.ruta)
+                { LayoutPuntajes(
+                    puntajesViewModel,
+                    authViewmodel,
+                    user) }
+                composable(Screen.Juego.ruta)
+                { GameScreen(
+                    authViewmodel,
+                    puntajesViewModel) }
+                composable(Screen.User.ruta)
+                {
+                    LayoutUser(
+                        puntajesViewModel,
+                        user
+                    )
+                }
+                composable(Screen.Pokedex.ruta){
+                    LayoutPokedex(listaPokemonViewModel)
+                }
             }
-        is PuntajesUiState.Error -> {}
-        is PuntajesUiState.Idle -> {}
+
+        NavHost(
+            navController = mainScreenNavController,
+            graph = graph,
+            modifier = Modifier.padding(innerPadding)
+        )
     }
 }

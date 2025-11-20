@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">juego_topos</string>
+    <string name="login_nav">login</string>
+    <string name="registro_nav">registro</string>
+    <string name="main_nav">main</string>
 </resources>

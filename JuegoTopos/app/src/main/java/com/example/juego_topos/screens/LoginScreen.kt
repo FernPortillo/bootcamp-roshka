@@ -1,6 +1,5 @@
 package com.example.juego_topos.screens
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,38 +11,41 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import com.example.juego_topos.composables.PasswordTextFieldConSelectorVisibilidad
 import com.example.juego_topos.composables.VisibleTextField
-import com.example.juego_topos.data.SharedPreferences
 import com.example.juego_topos.model.AuthUIState
 import com.example.juego_topos.model.AuthViewmodel
-import com.example.juego_topos.repository.SharedPrefsRepository
-import com.example.juego_topos.ui.theme.GameTheme
+import com.example.juego_topos.navigator.Screen
 
 @Composable
 fun LayoutLogin(
     viewModel: AuthViewmodel,
-    onNavegateToRegistro :() -> Unit,
-    onLoginExitoso: () -> Unit,
-    modifier : Modifier
+    mainNavController : NavHostController
 )
 {
     when(viewModel.uiStateLogin)
     {
         AuthUIState.Error -> {/* Error dialog */}
-        AuthUIState.Exito -> {onLoginExitoso()}
+        AuthUIState.Exito -> {}
         AuthUIState.Idle -> {}
+    }
+
+    LaunchedEffect(viewModel.uiStateLogin){
+        if (viewModel.uiStateLogin is AuthUIState.Exito) {
+            mainNavController.navigate(Screen.Main.ruta)
+        }
+        viewModel.resetLoginState()
     }
     Surface()
     {
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .safeDrawingPadding()
                 .fillMaxSize(),
@@ -51,19 +53,18 @@ fun LayoutLogin(
             verticalArrangement = Arrangement.Center
         )
         {
-            LoginTextFields(viewModel, onNavegateToRegistro, modifier)
+            LoginTextFields(viewModel, mainNavController)
         }
     }
 }
 
 @Composable
 fun LoginTextFields(viewModel: AuthViewmodel,
-                    onNavegateToRegistro: () -> Unit,
-                    modifier: Modifier
+                    mainNavController: NavHostController,
 )
 {
     Column(
-        modifier = modifier
+        modifier = Modifier
             .padding(horizontal = 16.dp)
             .fillMaxWidth(0.9f),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -72,49 +73,25 @@ fun LoginTextFields(viewModel: AuthViewmodel,
         Text("Login")
 
         VisibleTextField(
-            viewModel.regUser,
+            viewModel.user,
             "Usuario",
-            onValueChange = { viewModel.updateUser(it) }
+            onValueChange = { viewModel.updateLoginUser(it) }
         )
 
         PasswordTextFieldConSelectorVisibilidad(
-            valor = viewModel.regPassword,
-            onValueChange = {viewModel.updatePass(it)}
+            valor = viewModel.password,
+            onValueChange = {viewModel.updateLoginPass(it)}
         )
 
         Button(
-            onClick = { viewModel.onButtonRegisterClick() },
-            modifier = modifier.padding(top = 32.dp),
+            onClick = { viewModel.onButtonLoginClick()},
+            modifier = Modifier.padding(top = 32.dp),
             content = { Text("Iniciar Sesion") }
         )
 
-        TextButton(onClick = {onNavegateToRegistro()})
+        TextButton(onClick = {mainNavController.navigate(Screen.Register.ruta)})
         {
             Text("Registrarse")
         }
-    }
-}
-
-
-@SuppressLint("ViewModelConstructorInComposable")
-@Composable
-@Preview(
-    showSystemUi = true,
-    showBackground = true,
-    device = Devices.PIXEL_7_PRO)
-fun PreviewLogin()
-{
-    GameTheme{
-        val context = LocalContext.current
-        val sp = SharedPreferences(context)
-        val repository = SharedPrefsRepository(sp)
-        val viewModel = AuthViewmodel(repository)
-
-        LayoutLogin(
-            viewModel,
-            onLoginExitoso = {},
-            onNavegateToRegistro = {},
-            modifier = Modifier
-        )
     }
 }
