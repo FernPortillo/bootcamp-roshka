@@ -7,3 +7,5 @@
 * practicas de android studio -> android_studio
 * login con contactos swipeables -> android_contact_swipe
 * App contactos con Base de Datos en RoomDB -> contact_database
+* ApiPokemon es el primer intento de la API
+* juegoTopos es la pokedex, el navbar, el juego, y el login con base de datos
