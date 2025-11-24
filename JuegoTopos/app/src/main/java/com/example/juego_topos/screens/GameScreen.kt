@@ -119,23 +119,17 @@ fun GameSection(viewModel : JuegoViewModel)
         .background(MaterialTheme.colorScheme.primary)
         .onSizeChanged { size -> viewModel.canvasSize = size }
         .pointerInput(Unit)
-        {
-            detectTapGestures { tap: Offset ->
-                val colision = Rect(
-                    offset = Offset(
-                        viewModel.posX.toFloat(),
-                        viewModel.posY.toFloat()
-                    ),
-                    size = Size(
-                        viewModel.size.toFloat(),
-                        viewModel.size.toFloat()
-                    )
-                )
-                if (colision.contains(tap) && viewModel.isCorriendo) {
-                    viewModel.sumarPunto()
-                }
+    {
+        detectTapGestures { tap: Offset ->
+            Log.d("TAP", "${tap.x}, ${tap.y}")
+
+            if (viewModel.estaDentroDelTopo(tap.x, tap.y) && viewModel.isCorriendo) {
+                Log.d(
+                    "TAP", "TAP, la posicion es ${viewModel.posX.toFloat()} y ${viewModel.posY.toFloat()}")
+                viewModel.sumarPunto()
             }
-        })
+        }
+    })
     {
 
         drawImage(

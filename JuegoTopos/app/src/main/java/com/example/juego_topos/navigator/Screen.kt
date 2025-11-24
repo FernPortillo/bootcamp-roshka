@@ -2,8 +2,7 @@ package com.example.juego_topos.navigator
 
 import androidx.compose.ui.graphics.vector.ImageVector
 
-sealed class Screen(val ruta : String)
-{
+sealed class Screen(val ruta : String) {
     object Login : Screen("login")
     object Register : Screen("registro")
     object Main : Screen("main")
@@ -11,6 +10,10 @@ sealed class Screen(val ruta : String)
     object Puntajes : Screen("puntajes")
     object User : Screen("user")
     object Pokedex : Screen("pokedex")
+    object Pokemon : Screen("pokemon/{nombrePokemon}")
+    {
+        fun createRoute(nombre: String) = "pokemon/$nombre"
+    }
 }
 
 data class NavigationItem(

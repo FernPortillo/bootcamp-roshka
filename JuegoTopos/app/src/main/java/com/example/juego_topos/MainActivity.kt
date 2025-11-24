@@ -9,9 +9,13 @@ import com.example.juego_topos.navigator.NavigationApp
 import com.example.juego_topos.model.AuthViewmodel
 import com.example.juego_topos.model.AuthViewmodelFactory
 import com.example.juego_topos.model.ListaPokemonViewModel
+import com.example.juego_topos.model.ListaPokemonViewmodelFactory
+import com.example.juego_topos.model.PokemonDetailsViewModel
+import com.example.juego_topos.model.PokemonDetailsViewModelFactory
 import com.example.juego_topos.model.PuntajesViewModel
 import com.example.juego_topos.model.PuntajesViewModelFactory
 import com.example.juego_topos.repository.MyApplication
+import com.example.juego_topos.repository.PokemonDetailsRepository
 import com.example.juego_topos.ui.theme.GameTheme
 import kotlin.getValue
 
@@ -22,10 +26,20 @@ class MainActivity : ComponentActivity() {
             (application as MyApplication).puntajesRepository
         )
     }
+
     private val listaPokemonViewModel: ListaPokemonViewModel by viewModels()
     {
-
+        ListaPokemonViewmodelFactory(
+            (application as MyApplication).listaPokemonRepository
+        )
     }
+    private val pokemonDetailViewModel: PokemonDetailsViewModel by viewModels()
+    {
+        PokemonDetailsViewModelFactory(
+            (application as MyApplication).pokemonDetailRepository
+        )
+    }
+
     private val authViewmodel: AuthViewmodel by viewModels()
     {
         AuthViewmodelFactory(
@@ -39,7 +53,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             GameTheme {
-                NavigationApp(puntajesViewModel, authViewmodel)
+                NavigationApp(puntajesViewModel, authViewmodel, listaPokemonViewModel, pokemonDetailsViewModel = pokemonDetailViewModel)
             }
         }
     }

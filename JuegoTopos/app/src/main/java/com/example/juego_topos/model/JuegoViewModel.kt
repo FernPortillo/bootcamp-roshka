@@ -18,8 +18,8 @@ import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 
-private const val RESPAWN = 500L
-private const val TICK = 350L
+private const val RESPAWN = 1000L
+private const val TICK = 500L
 
 class JuegoViewModel() : ViewModel()
 {
@@ -48,12 +48,18 @@ class JuegoViewModel() : ViewModel()
     }
 
     fun updatePosition() {
-        // Log.d("POSICION ACTUAL", "x = $posX, y = $posY")
+        Log.d("POSICION ACTUAL VERIFICA ESTE", "x = $posX, y = $posY")
         posX = Random.nextInt(canvasSize.width - size)
         posY = Random.nextInt(canvasSize.height - size)
-        // Log.d("NUEVA POSICION", "x = $posX, y = $posY")
+        Log.d("NUEVA POSICION", "x = $posX, y = $posY")
     }
 
+    fun estaDentroDelTopo(tapX: Float, tapY: Float): Boolean {
+        return tapX >= posX &&
+                tapX <= posX + size &&
+                tapY >= posY &&
+                tapY <= posY + size
+    }
 
     fun sumarPunto()
     {
@@ -93,6 +99,7 @@ class JuegoViewModel() : ViewModel()
                 if (contadorRespawn <= 0)
                 {
                     updatePosition()
+                    contadorRespawn = RESPAWN
                 }
             }
         }

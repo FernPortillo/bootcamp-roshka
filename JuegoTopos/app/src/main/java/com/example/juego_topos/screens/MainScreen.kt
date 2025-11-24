@@ -5,20 +5,24 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.createGraph
+import androidx.navigation.navArgument
 import com.example.juego_topos.navigator.Screen
 import com.example.juego_topos.composables.BottomNavBar
 import com.example.juego_topos.model.AuthViewmodel
 import com.example.juego_topos.model.ListaPokemonViewModel
+import com.example.juego_topos.model.PokemonDetailsViewModel
 import com.example.juego_topos.model.PuntajesViewModel
 
 @Composable
 fun MainScreen(authViewmodel: AuthViewmodel,
                puntajesViewModel: PuntajesViewModel,
                listaPokemonViewModel: ListaPokemonViewModel,
+               pokemonDetailsViewModel : PokemonDetailsViewModel,
                nombre: String)
 {
     val mainScreenNavController = rememberNavController()
@@ -50,7 +54,20 @@ fun MainScreen(authViewmodel: AuthViewmodel,
                     )
                 }
                 composable(Screen.Pokedex.ruta){
-                    LayoutPokedex(listaPokemonViewModel)
+                    LayoutPokedex(listaPokemonViewModel,
+                        onPokemonNavigate = {nombre ->
+                            mainScreenNavController.navigate(Screen.Pokemon.createRoute(nombre))
+                        })
+                }
+
+                composable(
+                    route = Screen.Pokemon.ruta,
+                    arguments = listOf(navArgument("nombrePokemon") {type = NavType.StringType}))
+                { backStackEntry ->
+                    val pokemonReceived = backStackEntry.arguments?.getString("nombrePokemon") ?: "Unknown"
+
+                    LayoutPokemon(pokemonDetailsViewModel, pokemonReceived)
+
                 }
             }
 

@@ -18,17 +18,7 @@ interface PokedexApiService {
 
     @GET("pokemon/{nombre}")
     suspend fun getPokemonDetail(
-        @Path("nombre") nombre: String) : PokemonDetailDataModel
+        @Path("nombre") nombre: String) : Response<PokemonDetailDataModel>
 
-
-    fun getRetroFitClient(): PokedexApiService
-    {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://pokeapi.co/api/v2/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(OkHttpClient())
-            .build()
-        return retrofit.create(PokedexApiService::class.java)
-    }
 }
 
