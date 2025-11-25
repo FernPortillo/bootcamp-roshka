@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A15A8582ED5DAC200A9E2EC /* TimerKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2A15A8572ED5DAC200A9E2EC /* TimerKit */; };
 		2A67F9362ED495C9002F7A57 /* ThemeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2A67F9352ED495C9002F7A57 /* ThemeKit */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A67F9362ED495C9002F7A57 /* ThemeKit in Frameworks */,
+				2A15A8582ED5DAC200A9E2EC /* TimerKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +86,7 @@
 			name = Test1;
 			packageProductDependencies = (
 				2A67F9352ED495C9002F7A57 /* ThemeKit */,
+				2A15A8572ED5DAC200A9E2EC /* TimerKit */,
 			);
 			productName = Test1;
 			productReference = 2A67F91A2ED48A40002F7A57 /* Test1.app */;
@@ -115,6 +118,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				2A67F9342ED495C9002F7A57 /* XCLocalSwiftPackageReference "ThemeKit" */,
+				2A15A8562ED5DAC200A9E2EC /* XCLocalSwiftPackageReference "TimerKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2A67F91B2ED48A40002F7A57 /* Products */;
@@ -356,6 +360,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
+		2A15A8562ED5DAC200A9E2EC /* XCLocalSwiftPackageReference "TimerKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = TimerKit;
+		};
 		2A67F9342ED495C9002F7A57 /* XCLocalSwiftPackageReference "ThemeKit" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ThemeKit;
@@ -363,6 +371,10 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2A15A8572ED5DAC200A9E2EC /* TimerKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TimerKit;
+		};
 		2A67F9352ED495C9002F7A57 /* ThemeKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ThemeKit;

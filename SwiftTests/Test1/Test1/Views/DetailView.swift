@@ -11,7 +11,7 @@ struct DetailView: View {
         List{
             Section(header: Text("Meeting Info"))
             {
-                NavigationLink(destination: MeetingView(scrum: scrum)){
+                NavigationLink(destination: MeetingView(scrum: $scrum)){
                     Label("Start Meeting", systemImage: "timer")
                         .font(.headline)
                         .foregroundStyle(.tint)
@@ -48,29 +48,18 @@ struct DetailView: View {
             Button("Edit")
             {
                 isEditingViewShowing = true
+                // Aca recibe la copia del scrum
                 editingScrum = scrum
             }
         }
         .sheet(isPresented: $isEditingViewShowing)
         {
             NavigationStack{
-                DetailEditView(scrum: $editingScrum)
+                // recibe la copia, osea, modifica el scrum editable
+                DetailEditView(scrum: $editingScrum,
+                               // Cuando apriete save, guarda editing scrum en la var scrum real
+                               saveEdits: {_ in scrum = editingScrum})
                     .navigationTitle(scrum.title)
-                    .toolbar{
-                        ToolbarItem(placement: .cancellationAction){
-                            Button("Cancel")
-                            {
-                                isEditingViewShowing = false
-                            }
-                        }
-                        
-                        ToolbarItem(placement: .confirmationAction){
-                            Button("Save")
-                            {
-                                isEditingViewShowing = false
-                            }
-                        }
-                    }
             }
         }
     }
