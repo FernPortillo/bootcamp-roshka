@@ -8,7 +8,7 @@
 import Foundation
 
 /// Modelo de datos del Character Gender, puede ser Female, Male, Genderless, Unknown
-enum UCCCharacterGender : String, Codable {
+enum UCCCharacterGender : String, Codable, Sendable {
     case female = "Female"
     case male = "Male"
     case genderless = "Genderless"

@@ -8,7 +8,7 @@
 import Foundation
 
 /// Modelo de datos para asociar a la API call de los Characters
-struct UCCCharacters: Codable
+struct UCCCharacters: Codable, Sendable
 {
     let id: Int
     let name: String

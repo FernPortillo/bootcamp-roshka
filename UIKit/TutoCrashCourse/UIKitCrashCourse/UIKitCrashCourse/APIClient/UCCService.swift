@@ -29,38 +29,35 @@ final class UCCService
     ///   - request: request instance
     ///   - type: tipo de objeto que esperamos
     ///   - completion: el callback que recibis, con el error o el success
-    public func execute<T: Codable>(
+    public func execute<T: Codable & Sendable>(
         _ request: UCCRequest,
         expecting type: T.Type,
         completion: @escaping (Result<T, Error>) -> Void)
     {
-        guard let urlRequest = self.request(from: request) else{
+        guard let urlRequest = self.request(from: request) else {
             completion(.failure(UCCServiceError.failedToCreateRequest))
             return
         }
         
-        let task = URLSession.shared.dataTask(with: urlRequest){data, _, error in
-            guard let data = data, error == nil else{
+        let expectedType = type
+
+        let task = URLSession.shared.dataTask(with: urlRequest) { data, _, error in
+            guard let data = data, error == nil else {
                 completion(.failure(UCCServiceError.failedToGetData))
                 return
             }
             
-            
-        // Decode
-            do{
-                let result = try JSONDecoder().decode(type.self, from: data)
+            do {
+                let result = try JSONDecoder().decode(expectedType, from: data)
                 completion(.success(result))
-                print(String(describing: result))
-
-                //
-            }
-            catch{
+            } catch {
                 completion(.failure(UCCServiceError.failedToSerializeData))
             }
-            
         }
+        
         task.resume()
     }
+
     
     // MARK: -  PRIVATE
     private func request(from uccRequest: UCCRequest) -> URLRequest?

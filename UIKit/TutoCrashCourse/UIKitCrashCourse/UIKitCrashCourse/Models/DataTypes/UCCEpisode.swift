@@ -8,7 +8,7 @@
 import Foundation
 
 /// Modelo de Datos del Episodio para la API call
-struct UCCEpisode : Codable
+struct UCCEpisode : Codable, Sendable
 {
     let id: Int
     let name: String

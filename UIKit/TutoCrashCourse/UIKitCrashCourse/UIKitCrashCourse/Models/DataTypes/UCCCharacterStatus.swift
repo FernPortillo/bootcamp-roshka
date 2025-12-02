@@ -8,7 +8,7 @@
 import Foundation
 
 /// Modelo de datos de los Status de los Characters puede ser Alive, Dead, o Unknown
-enum UCCCharacterStatus : String, Codable {
+enum UCCCharacterStatus : String, Codable, Sendable {
     case alive = "Alive"
     case dead = "Dead"
     case `unknown` = "unknown"

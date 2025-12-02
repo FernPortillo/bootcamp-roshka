@@ -8,7 +8,7 @@
 import Foundation
 
 /// Modelo de datos de la Location para la API Call
-struct UCCLocation : Codable
+struct UCCLocation : Codable, Sendable
 {
     let id: Int
     let name: String

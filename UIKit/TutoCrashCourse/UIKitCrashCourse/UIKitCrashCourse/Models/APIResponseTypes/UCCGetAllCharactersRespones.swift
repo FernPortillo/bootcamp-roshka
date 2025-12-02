@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UCCGetAllCharactersResponse : Codable
+struct UCCGetAllCharactersResponse : Codable, Sendable
 {
     struct Info : Codable {
         let count : Int
