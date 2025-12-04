@@ -10,6 +10,7 @@ import Foundation
 enum ApiError : LocalizedError {
     case invalidURL
     case invalidResponse
+    case unknownError
     case httpError(Error)
     case decoding(Error)
     
@@ -20,6 +21,8 @@ enum ApiError : LocalizedError {
             return "Invalid URL"
         case .invalidResponse:
             return "Invalid response from server"
+        case .unknownError:
+            return "Error desconocido"
         case .httpError(let error):
             return "HTTP Error \(error)"
         case .decoding(let error):

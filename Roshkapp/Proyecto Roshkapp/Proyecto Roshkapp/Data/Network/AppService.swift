@@ -7,13 +7,18 @@
 
 import Foundation
 
+
+
+
 final class AppService
 {
-    /// Para hacer aun mas generica, se puede pasar el tipo de metodo (Get, post, query...)
+    
     //MARK: Cambiar que la URL sea de donde se envie
-    func execute<T: Decodable>(from URLString: String = "http://localhost:8080/login",
-                             type: T.Type,
-                             body: Encodable? = nil) async throws -> T
+    func execute<T: Decodable>(from URLString: String,
+                               method: MethodType,
+                               type: T.Type,
+                               token: String? = nil,
+                               body: Encodable? = nil,) async throws -> T
     {
         
         guard let url = URL(string: URLString) else {
@@ -21,8 +26,17 @@ final class AppService
         }
         
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        request.httpMethod = method.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // Si es un request after-login, tiene que enviar el token
+        if token != nil
+        {
+            request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
+        }
+        
+        
+        
         if let body = body{
             request.httpBody = try JSONEncoder().encode(body)
         }
@@ -43,5 +57,6 @@ final class AppService
         
     }
 }
+
 
 

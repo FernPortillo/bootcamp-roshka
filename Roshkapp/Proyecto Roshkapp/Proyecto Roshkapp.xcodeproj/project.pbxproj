@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2A00F3452EE1D71F0064F6BB /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 2A00F3442EE1D71F0064F6BB /* KeychainAccess */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		2AA4B8D62EDF63EF00737072 /* Proyecto Roshkapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Proyecto Roshkapp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A00F3452EE1D71F0064F6BB /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = "Proyecto Roshkapp";
 			packageProductDependencies = (
+				2A00F3442EE1D71F0064F6BB /* KeychainAccess */,
 			);
 			productName = "Proyecto Roshkapp";
 			productReference = 2AA4B8D62EDF63EF00737072 /* Proyecto Roshkapp.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 2AA4B8CD2EDF63EF00737072;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2A00F3432EE1D71F0064F6BB /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2AA4B8D72EDF63EF00737072 /* Products */;
 			projectDirPath = "";
@@ -336,6 +345,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2A00F3432EE1D71F0064F6BB /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2A00F3442EE1D71F0064F6BB /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A00F3432EE1D71F0064F6BB /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2AA4B8CE2EDF63EF00737072 /* Project object */;
 }

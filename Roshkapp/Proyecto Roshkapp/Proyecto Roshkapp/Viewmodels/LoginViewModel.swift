@@ -13,12 +13,14 @@ final class LoginViewModel : ObservableObject {
     @Published var loginInput : String = ""
     @Published var passwordInput : String = ""
     @Published var errorMessage : String? = ""
-    @Published var isLoggedIn : Bool = false
     
     private let loginUseCase : LoginUsecase
+    private let appState : AppState
+
     
-    init(loginUseCase: LoginUsecase) {
+    init(loginUseCase: LoginUsecase, appState: AppState) {
         self.loginUseCase = loginUseCase
+        self.appState = appState
     }
     
     
@@ -29,11 +31,12 @@ final class LoginViewModel : ObservableObject {
             contrasena: passwordInput)
         
         do {
-            let _ = try await loginUseCase.executeLogin(request: request)
+            let response = try await loginUseCase.executeLogin(request: request)
             
             await MainActor.run
             {
-                isLoggedIn = true
+                // print(response.token)
+                appState.isAuthenticated = true
             }
         }
         catch {

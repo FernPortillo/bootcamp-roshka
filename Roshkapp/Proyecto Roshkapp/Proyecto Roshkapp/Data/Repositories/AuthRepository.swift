@@ -17,7 +17,10 @@ protocol AuthRepositoryProtocol {
 struct AuthRepositoryImplementation : AuthRepositoryProtocol {
     let appService : AppService
     func login(request: LoginRequest) async throws -> LoginResponse {
-        return try await appService.execute( type: LoginResponse.self, body: request)
+        return try await appService.execute(from: Endpoints.login.rawValue,
+                                            method: .POST,
+                                            type: LoginResponse.self,
+                                            body: request)
     }
     func logout() async throws {}
 }

@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct LoginScreen: View {
-    
-    @StateObject var loginViewModel : LoginViewModel
-    
+
+    @StateObject var loginVM: LoginViewModel
     @State var isRememberMeChecked : Bool = false
     var body: some View {
+        
+        //TODO: No hardcodear y hacer funcionar el RECUERDAME
         VStack {
             Spacer(minLength: 150)
             
@@ -20,11 +21,11 @@ struct LoginScreen: View {
                 .padding(.bottom, Spacing.l)
             
             VStack(alignment: .leading){
-                LoginMailField(inputText: $loginViewModel.loginInput,
+                LoginMailField(inputText: $loginVM.loginInput,
                                fieldText: "Ingresa tu correo")
                     .padding(.vertical, Spacing.s)
                 
-                CustomPassField(inputText: $loginViewModel.passwordInput,
+                CustomPassField(inputText: $loginVM.passwordInput,
                                 fieldText: "Ingresa tu Contraseña")
                     .padding(.vertical, Spacing.s)
                 
@@ -35,13 +36,10 @@ struct LoginScreen: View {
                 IconButton(buttonText: "Iniciar Sesion",
                            iconName: "login.icon")
                     {
-                        Task { await loginViewModel.login() }
-                    }
-                    .fullScreenCover(isPresented: $loginViewModel.isLoggedIn)
-                        {
-                            MainScreen()
-
+                        Task {
+                            await loginVM.login()
                         }
+                    }
                     .padding(.vertical, Spacing.s)
                 
                 Spacer()
@@ -53,7 +51,6 @@ struct LoginScreen: View {
     }
 }
 
-/* #Preview {
- LoginScreen()
- }
- */
+#Preview {
+    LoginScreen(loginVM: LoginViewModel.mock())
+}
