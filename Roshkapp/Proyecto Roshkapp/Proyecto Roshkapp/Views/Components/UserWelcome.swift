@@ -12,10 +12,7 @@ struct UserWelcome: View {
     let nombre: String
     var body: some View {
         VStack(alignment: .leading){
-            Image("generic.avatar")
-                .onTapGesture {
-                    print("Ir al perfil")
-                }
+            ProfilePic()
             Text("Bienvenido! \(nombre)")
         }
     }

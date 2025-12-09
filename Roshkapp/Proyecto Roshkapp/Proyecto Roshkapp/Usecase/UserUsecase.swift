@@ -7,24 +7,20 @@
 
 import Foundation
 
-final class UserUsecase
+final class UserUsecase : AuthenticatedUsecase
 {
-    private let keychain : KeychainManager
-    private let userRepository : UserRepositoryImplementation
+    let keychain : KeychainManager
+    let userRepository : UserRepositoryImplementation
     
     init(keychain: KeychainManager, userRepository: UserRepositoryImplementation) {
         self.keychain = keychain
         self.userRepository = userRepository
     }
     
-    func getMyUser() async throws -> UserModel
-    {
-        let token = try? keychain.getAccessToken()
-        guard !token!.isEmpty else {
-            print("Token vacio? (no deberia llegar aca)")
-            throw ApiError.unknownError
+    func getUser() async throws -> UserModel {
+        return try await executeWithToken{ token in
+            try await userRepository.getMyUser(token: token)
         }
-        return try await userRepository.getMyUser(token: token!)
     }
     
         //TODO: Logout

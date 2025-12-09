@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+
 final class UserViewModel: ObservableObject
 {
     private let userUC : UserUsecase
@@ -21,7 +22,8 @@ final class UserViewModel: ObservableObject
     func getUser() async {
         state = .loading
         do{
-            let user = try await userUC.getMyUser()
+            let user = try await userUC.getUser()
+            print(user.rol.idRol)
             state = .loaded(user)
         }
         catch{
@@ -31,10 +33,5 @@ final class UserViewModel: ObservableObject
 }
 
 
-enum LoadingState<T>
-{
-    case idle
-    case loading
-    case loaded(T)
-    case failed(Error)
-}
+
+

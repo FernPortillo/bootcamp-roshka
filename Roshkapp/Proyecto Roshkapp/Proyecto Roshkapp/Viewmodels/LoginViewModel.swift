@@ -35,7 +35,7 @@ final class LoginViewModel : ObservableObject {
             
             await MainActor.run
             {
-                // print(response.token)
+                print(response.token)
                 appState.isAuthenticated = true
             }
         }

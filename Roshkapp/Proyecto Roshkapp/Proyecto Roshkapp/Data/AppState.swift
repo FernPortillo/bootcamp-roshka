@@ -8,5 +8,6 @@
 
 import Combine
 class AppState: ObservableObject {
+    //TODO: Manejar current user y errores desde aca
     @Published var isAuthenticated : Bool = false
 }

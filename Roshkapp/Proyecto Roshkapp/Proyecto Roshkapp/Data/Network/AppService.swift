@@ -32,6 +32,7 @@ final class AppService
         // Si es un request after-login, tiene que enviar el token
         if token != nil
         {
+            // print("Tiene token")
             request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
         }
         
@@ -56,6 +57,7 @@ final class AppService
         }
         
     }
+    
 }
 
 

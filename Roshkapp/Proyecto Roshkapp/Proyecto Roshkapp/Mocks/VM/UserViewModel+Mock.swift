@@ -36,7 +36,7 @@ extension UserViewModel {
             foco: "Que era foco",
             urlPerfil: nil,
             disponibilidad: 100,
-            equipos: ["String"]))
+            equipos: []))
         return vm
     }
     

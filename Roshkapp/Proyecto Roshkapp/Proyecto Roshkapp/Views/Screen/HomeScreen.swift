@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct HomeScreen: View {
-    @StateObject var userVM : UserViewModel
-
+    @ObservedObject var userVM : UserViewModel
+    @ObservedObject var novedadesVM : NovedadesViewModel
+    
+    
     var body: some View {
         switch userVM.state {
         case .idle:
@@ -17,26 +19,24 @@ struct HomeScreen: View {
                 .onAppear{
                     Task{
                         await userVM.getUser()
+                        await novedadesVM.loadNovedades()
                     }
                 }
         case .loading:
             ProgressView()
         case .loaded(let user):
             HomeMenuTopbar(nombre: user.nombre)
+            InfiniteCarouselView()
+            NovedadesText()
         case .failed(let error):
             Text(error.localizedDescription)
         }
     }
 }
 
-#Preview("Loading") {
-    HomeScreen(userVM: UserViewModel.mockLoading())
+#Preview {
+    let userVM = UserViewModel.mockLoaded()
+    let novedadesVM = NovedadesViewModel.mock()
+    HomeScreen(userVM: userVM, novedadesVM: novedadesVM)
 }
 
-#Preview("Loaded") {
-    HomeScreen(userVM: UserViewModel.mockLoaded())
-}
-
-#Preview("Error") {
-    HomeScreen(userVM: UserViewModel.mockError())
-}

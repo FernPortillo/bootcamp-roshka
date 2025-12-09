@@ -26,10 +26,10 @@ struct UserModel : Codable
     let foco : String
     let urlPerfil : String?
     let disponibilidad: Int
-    let equipos : [String] //Despues cambiar a [EquiposModel]
+    let equipos : [EquipoModel]
 }
 
-
+// Para probar frpm@gmail.com
 
 
 
