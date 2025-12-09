@@ -23,7 +23,7 @@ struct InfiniteCarouselView : View {
                         CarouselCard(imageName: nombre)
                             .containerRelativeFrame(.horizontal,
                                                     count: 1,
-                                                    spacing: 16)
+                                                    spacing: 32)
                             .scrollTransition{ content, phase in
                                 content
                                     // Si esta en la pantalla
@@ -31,6 +31,7 @@ struct InfiniteCarouselView : View {
                             }
                     }
                 }
+                .frame(height: 200)
                 .scrollTargetLayout()
             }
             CarouselProgressIndicator(
@@ -41,7 +42,7 @@ struct InfiniteCarouselView : View {
         .scrollIndicators(.hidden)
         .scrollPosition(id: $scrollPosition)
         .scrollTargetBehavior(.viewAligned)
-        .contentMargins(Spacing.xl, for: .scrollContent)
+        .contentMargins(Spacing.l, for: .scrollContent)
         .onChange(of: scrollPosition) { oldValue, newValue in
             if let newValue, let index = nombreImagenes.firstIndex(of: newValue) {
                 currentIndex = index
@@ -69,6 +70,7 @@ struct CarouselCard: View {
             .scaledToFill()
             .frame(width: 300, height: 240)
             .clipShape(RoundedRectangle(cornerRadius: Spacing.m))
+            .padding(.horizontal, Spacing.m)
             .shadow(color: .black.opacity(0.3) ,radius: 4, x: 0, y: 4)
             .onTapGesture {
                 print("Llevame a la pagina")

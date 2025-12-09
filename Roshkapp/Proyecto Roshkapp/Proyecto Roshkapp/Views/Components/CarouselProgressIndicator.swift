@@ -22,7 +22,7 @@ struct CarouselProgressIndicator : View {
                     }
                  label: {
                     Rectangle()
-                        .fill(Color.gray.opacity(index == currentIndex ? 0.8 : 0.3))
+                         .fill(index == currentIndex ? Color.accentColor : Color.darkerBackgroundColor)
                         .frame(width: Spacing.s, height: Spacing.s)
                         .rotationEffect(Angle(degrees: 45))
                 }

@@ -11,7 +11,7 @@ extension Color {
     
     /// Colores principales y acento
     static let mainColor : Color = Color(hex: "1C76BA")
-    static let appBackgroundColor : Color = Color("EBF9F7")
+    static let appBackgroundColor : Color = Color(hex: "EBF9F7")
     static let accentColor : Color = Color(hex: "EEB311")
     
     /// Colores para destacar y textos

@@ -13,24 +13,32 @@ struct HomeScreen: View {
     
     
     var body: some View {
-        switch userVM.state {
-        case .idle:
-            Text("")
-                .onAppear{
-                    Task{
-                        await userVM.getUser()
-                        await novedadesVM.loadNovedades()
+        VStack(alignment: .leading){
+            switch userVM.state {
+            case .idle:
+                Text("")
+                    .onAppear{
+                        Task{
+                            await userVM.getUser()
+                            await novedadesVM.loadNovedades()
+                        }
                     }
+            case .loading:
+                ProgressView()
+            case .loaded(let user):
+                ScrollView{
+                    HomeMenuTopbar(nombre: user.nombre)
+                        .padding(.vertical, Spacing.s)
+                    InfiniteCarouselView()
+                        .padding(.vertical, Spacing.s)
+                    NovedadesComponent()
                 }
-        case .loading:
-            ProgressView()
-        case .loaded(let user):
-            HomeMenuTopbar(nombre: user.nombre)
-            InfiniteCarouselView()
-            NovedadesText()
-        case .failed(let error):
-            Text(error.localizedDescription)
+                .padding(Spacing.s)
+            case .failed(let error):
+                Text(error.localizedDescription)
+            }
         }
+        .background(Color.appBackgroundColor)
     }
 }
 
