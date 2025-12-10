@@ -8,18 +8,24 @@
 import SwiftUI
 
 struct NovedadesComponent: View {
+    let novedades: [NovedadesModel]
     var body: some View {
         VStack(alignment: .leading){
-            Text("Novedades")
+            Text("Avisos")
                 .font(.boldMedium)
-                .padding()
-            NovedadesText()
-            NovedadesText()
-            NovedadesText()
+                .padding(.horizontal, Spacing.mm)
+            ForEach(novedades, id: \.idNovedades) { novedad in
+                NovedadesText(
+                    autor: NovedadesModel.getNombreNovedad(novedad: novedad),
+                    titulo: novedad.titulo,
+                    descripcion: novedad.descripcion)
+            }
         }
     }
 }
 
 #Preview {
-    NovedadesComponent()
+    var novedades = NovedadesModel.mockNovedadText
+    var sortedMock = novedades.sorted { $0.prioridad && !$1.prioridad}
+    NovedadesComponent(novedades: sortedMock)
 }

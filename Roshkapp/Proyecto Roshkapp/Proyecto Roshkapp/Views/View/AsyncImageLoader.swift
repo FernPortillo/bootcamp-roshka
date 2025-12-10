@@ -35,6 +35,6 @@ struct AsyncImageLoader: View {
 }
 
 #Preview {
-    let url = URL(string: NovedadesModel.mockNovedad.imagenUrl!)
+    let url = URL(string: NovedadesModel.mockNovedadConImagen.imagenUrl!)
     AsyncImageLoader(url: url!)
 }

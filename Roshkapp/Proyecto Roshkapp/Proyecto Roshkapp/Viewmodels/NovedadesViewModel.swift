@@ -10,8 +10,8 @@ import Combine
 
 final class NovedadesViewModel: BaseAuthenticatedViewModel
 {
-    @Published var carousel : [NovedadesModel?]
-    @Published var novedades : [NovedadesModel?]
+    @Published var carousel : [NovedadesModel]
+    @Published var novedades : [NovedadesModel]
     @Published var isLoading : Bool = false
     @Published var errorMessage : String? = nil
     
