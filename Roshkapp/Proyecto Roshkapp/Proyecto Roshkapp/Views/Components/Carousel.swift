@@ -13,7 +13,7 @@ struct InfiniteCarouselView : View {
     
     let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     
-    let nombreImagenes : [String] = ["1", "2", "3"]
+    let nombreImagenes : [String] = ["1", "2", "3", "4", "5", "6", "7"]
     
     var body: some View{
         VStack{

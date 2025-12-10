@@ -6,7 +6,7 @@
 //
 
 
-struct EquipoModel: Codable
+struct DispositivoModel: Codable
 {
     let idDispositivo: Int
     let nombreDispositivo: String

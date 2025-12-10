@@ -15,7 +15,7 @@ import Foundation
 {
     let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc2NTM3MzM4NywiaWF0IjoxNzY1MzY2MTg3fQ.sL51SkvissBKhx--IJpCcyojK00cSHR1CYKotsAVyC4"
     
-    guard let url = URL(string: "http://localhost:8080/api/v1/admin/th/novedades") else {
+    guard let url = URL(string: Endpoints.novedades.rawValue) else {
         print("URL Invalida")
         return
     }

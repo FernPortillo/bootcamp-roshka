@@ -26,7 +26,7 @@ struct UserModel : Codable
     let foco : String?
     let urlPerfil : String?
     let disponibilidad: Int?
-    let equipos : [EquipoModel]?
+    let equipos : [DispositivoModel]?
     
     static var mockUser = UserModel(
         idUsuario: 1,
