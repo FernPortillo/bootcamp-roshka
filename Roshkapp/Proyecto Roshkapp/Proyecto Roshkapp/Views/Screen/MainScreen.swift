@@ -17,6 +17,7 @@ struct MainScreen: View {
             {
                 HomeScreen(userVM: userVM, novedadesVM: novedadesVM)
             }
+
             Tab("Ver más", systemImage: "ellipsis")
             {
                 

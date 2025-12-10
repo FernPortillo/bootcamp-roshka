@@ -26,7 +26,7 @@ import Foundation
     Task {
         do {
             let (data, _) = try await URLSession.shared.data(for: request)
-            let response = try JSONDecoder().decode([NovedadesModel].self, from: data)
+            let _ = try JSONDecoder().decode([NovedadesModel].self, from: data)
         } catch {
             print(error)
         }

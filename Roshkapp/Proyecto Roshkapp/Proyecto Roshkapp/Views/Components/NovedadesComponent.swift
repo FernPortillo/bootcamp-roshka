@@ -24,8 +24,10 @@ struct NovedadesComponent: View {
     }
 }
 
+
 #Preview {
     var novedades = NovedadesModel.mockNovedadText
     var sortedMock = novedades.sorted { $0.prioridad && !$1.prioridad}
     NovedadesComponent(novedades: sortedMock)
 }
+
