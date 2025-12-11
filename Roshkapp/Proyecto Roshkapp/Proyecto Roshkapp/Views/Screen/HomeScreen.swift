@@ -35,17 +35,20 @@ struct HomeScreen: View {
                     let mock = NovedadesModel.mockNovedadText.sorted { $0.prioridad && !$1.prioridad}
 //                    let ordenadas = novedadesVM.novedades.sorted { $0.prioridad && !$1.prioridad}
                     if !mock.isEmpty{
-                        NovedadesComponent(novedades: mock)
+                        NovedadesManager(novedades: mock)
                     }
-                    Group{
-                        Text("No hay avisos para mostrar")
-                            .font(.blackLarge)
-                            .padding()
-                        Image("sadface.icon")
-                            .resizable()
-                            .frame(width: 100, height: 100)
+                    else
+                    {
+                        Group{
+                            Text("No hay avisos para mostrar")
+                                .font(.blackLarge)
+                                .padding()
+                            Image("sadface.icon")
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                        }
+                        .foregroundStyle(Color.darkerBackgroundColor)
                     }
-                    .foregroundStyle(Color.darkerBackgroundColor)
                 }
                 .padding(Spacing.s)
             case .failed(let error):

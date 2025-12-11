@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NovedadesComponent: View {
+struct NovedadesManager: View {
     let novedades: [NovedadesModel]
     var body: some View {
         VStack(alignment: .leading){
@@ -28,6 +28,6 @@ struct NovedadesComponent: View {
 #Preview {
     var novedades = NovedadesModel.mockNovedadText
     var sortedMock = novedades.sorted { $0.prioridad && !$1.prioridad}
-    NovedadesComponent(novedades: sortedMock)
+    NovedadesManager(novedades: sortedMock)
 }
 
