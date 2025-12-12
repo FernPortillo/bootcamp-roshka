@@ -29,7 +29,7 @@ extension BaseAuthenticatedViewModel {
         catch
         {
             errorMessage = error.localizedDescription
-            print("Error: \(error)")
+            print("Error: \(error), baseAuth")
         }
         
         isLoading = false

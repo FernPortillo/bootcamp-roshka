@@ -15,5 +15,6 @@ enum Endpoints: String {
     case thTodosPermisos = "http://localhost:8080/api/v1/admin/th/users/requests/sortby?type=permiso"
     case thTodosVacaciones = "http://localhost:8080/api/v1/admin/th/users/requests/vacations"
     case asTodosSolicitudDispositivos = "http://localhost:8080/api/v1/admin/sysadmin/allRequests"
+    case updateProfilePic = "http://localhost:8080/api/v1/usuarios/actualizarfoto"
 }
 

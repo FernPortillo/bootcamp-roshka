@@ -9,7 +9,8 @@ extension UserUsecase {
     static func mock() -> UserUsecase {
         return UserUsecase(
             keychain: KeychainManager.shared,
-            userRepository: UserRepositoryImplementation.mock()
+            userRepository: UserRepositoryImplementation.mock(),
+            appState: AppState.mockAuthenticated()
         )
     }
 }

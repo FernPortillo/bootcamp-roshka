@@ -27,27 +27,24 @@ struct HomeScreen: View {
                 ProgressView()
             case .loaded(let user):
                 ScrollView{
-                    HomeMenuTopbar(nombre: user.nombre)
+                    HomeMenuTopbar(user: user)
                         .padding(.vertical, Spacing.s)
                     InfiniteCarouselView()
                         .padding(.bottom, Spacing.mm)
+                    
+                    //MARK: cambiar para probar con novedades real
                     // Para testeo
                     let mock = NovedadesModel.mockNovedadText.sorted { $0.prioridad && !$1.prioridad}
-//                    let ordenadas = novedadesVM.novedades.sorted { $0.prioridad && !$1.prioridad}
+//                    let ordenadas = novedadesVM.novedades.sorted { $0.prioridad & $1.prioridad}
+                    
+                    
+                    
                     if !mock.isEmpty{
                         NovedadesManager(novedades: mock)
                     }
                     else
                     {
-                        Group{
-                            Text("No hay avisos para mostrar")
-                                .font(.blackLarge)
-                                .padding()
-                            Image("sadface.icon")
-                                .resizable()
-                                .frame(width: 100, height: 100)
-                        }
-                        .foregroundStyle(Color.darkerBackgroundColor)
+                        EmptySectionComponent(mensaje: "No hay novedades a mostrar", icon: IconsEnum.sadface.rawValue)
                     }
                 }
                 .padding(Spacing.s)
@@ -60,8 +57,10 @@ struct HomeScreen: View {
 }
 
 #Preview {
+    @Previewable let photosVM = ProfilePicViewModel.mock()
     let userVM = UserViewModel.mockLoaded()
     let novedadesVM = NovedadesViewModel.mock()
     HomeScreen(userVM: userVM, novedadesVM: novedadesVM)
+        .environmentObject(photosVM)
 }
 

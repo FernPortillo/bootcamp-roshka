@@ -28,6 +28,32 @@ struct UserModel : Codable
     let disponibilidad: Int?
     let equipos : [DispositivoModel]?
     
+    
+    /// Para cambiar la foto
+    static func userForProfilePicChange(user: UserModel, newImage: String) -> UserModel {
+        return UserModel(
+            idUsuario: user.idUsuario,
+            nombre: user.nombre,
+            apellido: user.apellido,
+            nroCedula: user.nroCedula,
+            correo: user.correo,
+            rol: user.rol,
+            fechaIngreso: user.fechaIngreso,
+            antiguedad: user.antiguedad,
+            diasVacaciones: user.diasVacaciones,
+            estado: user.estado,
+            telefono: user.telefono,
+            cargo: user.cargo,
+            fechaNacimiento: user.fechaNacimiento,
+            diasVacacionesRestante: user.diasVacacionesRestante,
+            foco: user.foco,
+            urlPerfil: newImage,
+            disponibilidad: user.disponibilidad,
+            equipos: user.equipos
+        )
+    }
+
+    
     static var mockUser = UserModel(
         idUsuario: 1,
         nombre: "Fu",
@@ -52,7 +78,7 @@ struct UserModel : Codable
         foco: "Desarrollo móvil",
         urlPerfil: "https://example.com/perfiles/fu.jpg",
         disponibilidad: 100,
-        equipos: []
+        equipos: DispositivoModel.mockDispositivos
     )
 }
 
@@ -60,3 +86,9 @@ struct UserModel : Codable
 
 
 
+
+extension UserModel{
+    static func getNombreUsuario(usuario: UserModel) -> String {
+        return ("\(usuario.nombre) \(usuario.apellido)")
+    }
+}

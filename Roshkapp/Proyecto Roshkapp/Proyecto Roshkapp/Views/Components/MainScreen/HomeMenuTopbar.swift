@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct HomeMenuTopbar: View {
-    let nombre: String
+    let user: UserModel
     var body: some View {
         HStack(alignment: .center){
-            UserWelcome(nombre: nombre)
+            UserWelcome(user: user)
             Spacer()
             Image(systemName: "bell")
                 .resizable()
@@ -26,7 +26,11 @@ struct HomeMenuTopbar: View {
     }
 }
 
-
+/*
 #Preview {
-    HomeMenuTopbar(nombre: "Funcionario")
+    @Previewable let photosVM = PhotoViewModel()
+    let user = UserModel.mockUser
+    HomeMenuTopbar(user: user)
+        .environmentObject(photosVM)
 }
+*/

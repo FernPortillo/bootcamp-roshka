@@ -15,10 +15,7 @@ struct NovedadesManager: View {
                 .font(.boldMedium)
                 .padding(.horizontal, Spacing.mm)
             ForEach(novedades, id: \.idNovedades) { novedad in
-                NovedadesText(
-                    autor: NovedadesModel.getNombreNovedad(novedad: novedad),
-                    titulo: novedad.titulo,
-                    descripcion: novedad.descripcion)
+                NovedadesText(novedad: novedad)
             }
         }
     }

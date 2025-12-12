@@ -16,12 +16,14 @@ struct Proyecto_RoshkappApp: App {
     private let authRepository: AuthRepositoryImplementation
     private let userRepository: UserRepositoryImplementation
     private let novedadesRepository : NovedadesRepositoryImplementation
+    private let photosRepository: ProfilePicRepositoryImplementation
     
     init() {
         self.authRepository = AuthRepositoryImplementation(appService: appService)
         self.userRepository = UserRepositoryImplementation(appService: appService)
         self.loginUC = LoginUsecase(keychain: KeychainManager.shared, authRepository: authRepository)
         self.novedadesRepository = NovedadesRepositoryImplementation(appService: appService)
+        self.photosRepository = ProfilePicRepositoryImplementation(appService: appService)
     }
     
     var body: some Scene {
@@ -30,8 +32,9 @@ struct Proyecto_RoshkappApp: App {
                 userRepository: userRepository,
                 authRepository: authRepository,
                 novedadesRepository: novedadesRepository,
+                photosRepository: photosRepository,
                 appService: appService,
-                loginUC: loginUC
+                loginUC: loginUC,
             )
             .preferredColorScheme(.light)
             .environmentObject(keychainManager)

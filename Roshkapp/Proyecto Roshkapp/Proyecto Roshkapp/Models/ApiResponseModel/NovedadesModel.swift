@@ -65,11 +65,6 @@ struct NovedadesModel : Codable {
     }
 }
 
-extension NovedadesModel{
-    static func getNombreNovedad(novedad: NovedadesModel) -> String {
-        return ("\(novedad.usuario.nombre) \(novedad.usuario.apellido)")
-    }
-}
 
 
      

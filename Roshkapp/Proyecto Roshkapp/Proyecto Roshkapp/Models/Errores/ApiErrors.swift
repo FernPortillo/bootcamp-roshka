@@ -9,7 +9,7 @@ import Foundation
 
 enum ApiError : LocalizedError {
     case invalidURL
-    case invalidResponse
+    case invalidResponse(statusCode: Int)
     case unknownError
     case httpError(Error)
     case decoding(Error)
@@ -19,8 +19,8 @@ enum ApiError : LocalizedError {
         switch self {
         case .invalidURL:
             return "Invalid URL"
-        case .invalidResponse:
-            return "Invalid response from server"
+        case .invalidResponse(let statusCode):
+                    return "Invalid response from server. HTTP status code: \(statusCode)"
         case .unknownError:
             return "Error desconocido"
         case .httpError(let error):
@@ -30,3 +30,4 @@ enum ApiError : LocalizedError {
         }
     }
 }
+

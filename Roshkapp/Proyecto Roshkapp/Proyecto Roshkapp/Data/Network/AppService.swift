@@ -39,14 +39,37 @@ final class AppService
         
         
         if let body = body{
-            request.httpBody = try JSONEncoder().encode(body)
+            let jsonData = try JSONEncoder().encode(body)
+            request.httpBody = jsonData
+//            if let jsonString = String(data: jsonData, encoding: .utf8) {
+//                print("Body enviado (primeros 500 chars): \(String(jsonString.prefix(500)))")
+//            }
         }
+        
+        
+        
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
             
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
-                throw ApiError.invalidResponse
+            guard let httpResponse = response as? HTTPURLResponse else {
+                throw ApiError.invalidResponse(statusCode: -1)
+            }
+            
+            
+            print("Status Code: \(httpResponse.statusCode)")
+
+            guard (200...299).contains(httpResponse.statusCode) else {
+                throw ApiError.invalidResponse(statusCode: httpResponse.statusCode)
+            }
+            
+            
+            if T.self == PostResponse.self {
+                if let responseString = String(data: data, encoding: .utf8),
+                    !responseString.isEmpty,
+                    !responseString.starts(with: "{") { // No es JSON
+                    let postResponse = PostResponse(message: responseString)
+                    return postResponse as! T
+                }
             }
             
             return try JSONDecoder().decode(type, from: data)

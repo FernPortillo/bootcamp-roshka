@@ -23,7 +23,6 @@ final class UserViewModel: ObservableObject
         state = .loading
         do{
             let user = try await userUC.getUser()
-            print(user.rol.idRol)
             state = .loaded(user)
         }
         catch{

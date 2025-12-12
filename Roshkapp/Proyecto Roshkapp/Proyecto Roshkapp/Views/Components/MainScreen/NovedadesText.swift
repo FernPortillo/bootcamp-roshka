@@ -11,17 +11,17 @@ import SwiftUI
 struct NovedadesText: View {
     @State private var isNovedadFullyVisible = false
     @State private var lineLimit = 1
-    let autor : String
-    //let tiempoPublicacion : String
-    let titulo : String
-    let descripcion: String
+    let novedad : NovedadesModel
     var body: some View {
+        let user = novedad.usuario
+        let titulo = novedad.titulo
+        let descripcion = novedad.descripcion
         let isNovedadTextoLongEnough = descripcion.count > 55
         VStack(alignment: .leading) {
             HStack{
-                ProfilePic()
+                ProfilePic(user: user)
                 VStack(alignment: .leading){
-                    Text(autor)
+                    Text(UserModel.getNombreUsuario(usuario: user))
                         .font(.regularMedium)
 //                    Text(tiempoPublicacion)
 //                        .font(.regularSmaller)
@@ -58,9 +58,9 @@ struct NovedadesText: View {
 }
 
 #Preview {
+    @Previewable var photosVM = ProfilePicViewModel.mock()
     NovedadesText(
-        autor: "Fulano deTal",
-//        tiempoPublicacion: "Hace 1 semana",
-        titulo: "Recordatorio",
-        descripcion: "A veces esto no va a funcionar correctamente, pero 55 es el numero magico segun parece")
+        novedad: NovedadesModel.mockNovedadText[0])
+    .environmentObject(photosVM)
+
 }

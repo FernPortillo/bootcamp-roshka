@@ -7,34 +7,53 @@
 
 import SwiftUI
 
+/// Para links
 struct AsyncImageLoader: View {
-    let url : URL
+    let url : String?
+    let defaultImage : String = "default.avatar"
     var body: some View {
-        AsyncImage(url: url) {
-            phase in
-            switch phase {
-            case .empty:
-                Rectangle()
-                    .overlay{
-                        ProgressView()
-                            .controlSize(.large)
-                    }
-            case .success(let image):
-                image
-                    .resizable()
-                    .scaledToFill()
-            case .failure(_):
-                Text("Could not get Image")
-                    .foregroundStyle(Color.pink)
-            @unknown default:
-                fatalError()
+        if url == nil || url!.isEmpty
+        {
+            DefaultImageLoader()
+        }
+        else {
+            let url = URL(string: url!)
+            AsyncImage(url: url) {
+                phase in
+                switch phase {
+                case .empty:
+                    DefaultImageLoader()
+                        .overlay{
+                            ProgressView()
+                                .controlSize(.large)
+                        }
+                case .success(let image):
+                    image
+                        .resizable()
+                        .scaledToFill()
+                case .failure(_):
+                    DefaultImageLoader()
+                @unknown default:
+                    fatalError()
+                }
             }
         }
-
     }
 }
 
+struct DefaultImageLoader: View {
+    var size: CGFloat = 50
+    var body: some View {
+        Image("default.avatar")
+            .resizable()
+            .frame(width: size, height: size)
+    }
+}
+
+
+
+
 #Preview {
-    let url = URL(string: NovedadesModel.mockNovedadConImagen.imagenUrl!)
+    let url = NovedadesModel.mockNovedadConImagen.imagenUrl
     AsyncImageLoader(url: url!)
 }

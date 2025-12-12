@@ -20,21 +20,77 @@ struct DispositivoModel: Codable
     let encargado: Int
     let nombreEncargado: String
     let ubicacion: Int
+    
+    
+    
+    static let mockDispositivos: [DispositivoModel] = [
+        DispositivoModel(
+            idDispositivo: 1,
+            nombreDispositivo: "Laptop Administrativa",
+            tipoDispositivo: 1, // laptop
+            nroSerie: "LAP-2024-001",
+            modelo: "Dell Latitude 5420",
+            detalle: "Equipo asignado para tareas administrativas.",
+            fechaFabricacion: "2023-05-10",
+            estado: "Operativo",
+            categoria: "Computo",
+            encargado: 101,
+            nombreEncargado: "Juan Pérez",
+            ubicacion: 12
+        ),
+
+        DispositivoModel(
+            idDispositivo: 2,
+            nombreDispositivo: "Monitor Principal",
+            tipoDispositivo: 3, // monitor
+            nroSerie: "MON-2023-114",
+            modelo: "Samsung 27'' IPS",
+            detalle: "Monitor principal de estación de trabajo.",
+            fechaFabricacion: "2022-11-22",
+            estado: "Operativo",
+            categoria: "Periféricos",
+            encargado: 102,
+            nombreEncargado: "María López",
+            ubicacion: 7
+        ),
+
+        DispositivoModel(
+            idDispositivo: 3,
+            nombreDispositivo: "Impresora Láser",
+            tipoDispositivo: 6, // impresora
+            nroSerie: "IMP-2022-089",
+            modelo: "HP LaserJet Pro M404dn",
+            detalle: "Impresora departamental utilizada por administración.",
+            fechaFabricacion: "2022-03-17",
+            estado: "En mantenimiento",
+            categoria: "Oficina",
+            encargado: 103,
+            nombreEncargado: "Carlos Gómez",
+            ubicacion: 4
+        )
+    ]
+
 }
 
 
-enum TipoDispositivos : String
+
+extension DispositivoModel
 {
-    case laptop = "laptop.icon"
-    case desktop = "desktop.icon"
-    case monitor = "monitor.icon"
-    case teclado = "teclado.icon"
-    case mouse = "mouse.icon"
-    case impresora = "impresora.icon"
-    case telefonoIP = "." //
-    case tablet = "tablet.icon"
-    case proyector = ".." //
-    case auriculares = "auriculares.icon"
-    case webcam = "webcam.icon"
-    case smartphone = "smartphone.icon"
+    static func getDeviceIcon(tipo : Int) -> String{
+        switch tipo {
+        case 1 : return "laptop.icon"
+        case 2 : return "desktop.icon"
+        case 3 : return "monitor.icon"
+        case 4 : return "teclado.icon"
+        case 5 : return "mouse.icon"
+        case 6 : return "impresora.icon"
+        case 7 : return "telefonoIP"
+        case 8 : return "tablet.icon"
+        case 9 : return "proyectorIP"
+        case 10 : return "auriculares.icon"
+        case 11 : return "webcam.icon"
+        case 12 : return "smartphone.icon"
+        default : return "device.unknown.icon"
+        }
+    }
 }
