@@ -21,8 +21,8 @@ struct LoginScreen: View {
                 .padding(.bottom, Spacing.l)
             
             VStack(alignment: .leading){
-                LoginMailField(inputText: $loginVM.loginInput,
-                               fieldText: "Ingresa tu correo")
+                CustomTextField(inputText: $loginVM.loginInput,
+                               fieldText: "Ingresa tu correo", icon: "envelope")
                     .padding(.vertical, Spacing.s)
                 
                 CustomPassField(inputText: $loginVM.passwordInput,

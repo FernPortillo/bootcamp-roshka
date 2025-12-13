@@ -15,6 +15,7 @@ struct MainScreen: View {
 
             Tab("Ver más", systemImage: "ellipsis")
             {
+                ProfileScreen(user: appState.myUser)
             }
         }
     }

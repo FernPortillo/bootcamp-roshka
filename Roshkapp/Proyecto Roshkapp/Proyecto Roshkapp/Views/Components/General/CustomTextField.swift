@@ -7,9 +7,10 @@
 
 import SwiftUI
 
-struct LoginMailField: View {
+struct CustomTextField: View {
     @Binding var inputText : String
     var fieldText : String = "Placeholder"
+    let icon : String
     var body: some View {
         TextField("",
                   text: $inputText,
@@ -20,7 +21,7 @@ struct LoginMailField: View {
         
         
         .safeAreaInset(edge: .leading) {
-            Image(systemName: "envelope")
+            Image(systemName: icon)
                 .foregroundStyle(Color.mainColor)
                 .padding(.trailing, 8)
         }
@@ -40,6 +41,6 @@ struct LoginMailField: View {
 
 #Preview {
     @Previewable @State var t = ""
-    LoginMailField(inputText: $t, fieldText: "Ingresa tu correo")
+    CustomTextField(inputText: $t, fieldText: "Ingresa tu correo", icon: "envelope")
 }
 

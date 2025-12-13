@@ -29,14 +29,6 @@ struct SolicitudesResponseModel : Codable {
     }
  }
 
- enum TipoSolicitud: String {
-    case dispositivo = "DISPOSITIVO"
-    case vacaciones = "VACACIONES"
-    case beneficio = "BENEFICIO"
-    case permiso = "PERMISO"
-    case otro
- }
-
  enum EstadoSolicitud: String {
     case pendiente = "P"
     case aprobado = "A"

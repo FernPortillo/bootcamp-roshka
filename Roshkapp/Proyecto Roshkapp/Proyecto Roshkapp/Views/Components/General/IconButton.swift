@@ -10,6 +10,7 @@ import SwiftUI
 struct IconButton: View {
     let buttonText: String
     let iconName: String
+    var systemName = false
     let action: () async -> Void
     
     var body: some View {
@@ -20,7 +21,7 @@ struct IconButton: View {
         } label: {
             Spacer()
             HStack {
-                Image(iconName)
+                Image(named: iconName, system: systemName)
                     .tint(.accentLighter)
                 
                 Text(buttonText)
