@@ -10,6 +10,7 @@ import Foundation
 
 protocol UserRepositoryProtocol {
     func getMyUser(token: String) async throws -> UserModel
+    func getUserById(token: String, idUser: Int) async throws -> UserModel
 }
 
 struct UserRepositoryImplementation : UserRepositoryProtocol {
@@ -17,6 +18,12 @@ struct UserRepositoryImplementation : UserRepositoryProtocol {
     func getMyUser(token: String) async throws -> UserModel {
         // print("getting user")
         return try await appService.execute(from: Endpoints.myUser.rawValue,
+                                            method: .GET,
+                                            type: UserModel.self,
+                                            token: token)
+    }
+    func getUserById(token: String, idUser: Int) async throws -> UserModel{
+        return try await appService.execute(from: Endpoints.myUser.rawValue,//MARK: CAMBIAR A ENDPOINT GETUSER
                                             method: .GET,
                                             type: UserModel.self,
                                             token: token)

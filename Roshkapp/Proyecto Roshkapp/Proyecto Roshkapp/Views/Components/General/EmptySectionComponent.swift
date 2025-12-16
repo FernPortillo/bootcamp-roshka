@@ -14,13 +14,12 @@ struct EmptySectionComponent : View{
     var body : some View{
         Group{
             Text(mensaje)
-                .font(.blackLarge)
+                .font(.blackMedium)
                 .padding()
             Image(named: icon, system: systemName)
                 .resizable()
                 .frame(width: 100, height: 100)
             }
-        .frame(width: .infinity)
         .foregroundStyle(Color.darkerBackgroundColor)
     }
 }

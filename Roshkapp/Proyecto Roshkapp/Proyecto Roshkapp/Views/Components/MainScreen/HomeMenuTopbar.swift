@@ -9,9 +9,10 @@ import SwiftUI
 
 struct HomeMenuTopbar: View {
     let user: UserModel
+    var editable: Bool = true
     var body: some View {
         HStack(alignment: .center){
-            UserWelcome(user: user)
+            UserWelcome(user: user, editable: editable)
             Spacer()
             Image(systemName: "bell")
                 .resizable()

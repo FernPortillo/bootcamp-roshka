@@ -12,6 +12,7 @@ struct NovedadesText: View {
     @State private var isNovedadFullyVisible = false
     @State private var lineLimit = 1
     let novedad : NovedadesModel
+    let userVM: UserViewModel
     var body: some View {
         let user = novedad.usuario
         let titulo = novedad.titulo
@@ -19,7 +20,8 @@ struct NovedadesText: View {
         let isNovedadTextoLongEnough = descripcion.count > 55
         VStack(alignment: .leading) {
             HStack{
-                ProfilePic(user: user)
+                let isMyUser = userVM.checkUserIsMyUser(user: user)
+                ProfilePic(user: user, editable: isMyUser)
                 VStack(alignment: .leading){
                     Text(UserModel.getNombreUsuario(usuario: user))
                         .font(.regularMedium)
@@ -59,8 +61,9 @@ struct NovedadesText: View {
 
 #Preview {
     @Previewable var photosVM = ProfilePicViewModel.mock()
+    @State var uvm = UserViewModel.mockLoaded()
     NovedadesText(
-        novedad: NovedadesModel.mockNovedadText[0])
+        novedad: NovedadesModel.mockNovedadText[0], userVM: uvm)
     .environmentObject(photosVM)
 
 }

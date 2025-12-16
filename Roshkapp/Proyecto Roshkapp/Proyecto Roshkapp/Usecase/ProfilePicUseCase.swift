@@ -36,5 +36,9 @@ final class ProfilePicUseCase : AuthenticatedUsecase
             try await newProfilePictureRepository.uploadNewProfilePic(token: token, body: body)
         }
     }
+    
+    func isMyUser(user: UserModel) -> Bool{
+        appState.checkMyUser(user: user)
+    }
 }
 

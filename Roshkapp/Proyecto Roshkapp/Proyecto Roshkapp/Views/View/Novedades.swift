@@ -9,13 +9,14 @@ import SwiftUI
 
 struct NovedadesManager: View {
     let novedades: [NovedadesModel]
+    let userVM: UserViewModel
     var body: some View {
         VStack(alignment: .leading){
             Text("Avisos")
                 .font(.boldMedium)
                 .padding(.horizontal, Spacing.mm)
             ForEach(novedades, id: \.idNovedades) { novedad in
-                NovedadesText(novedad: novedad)
+                NovedadesText(novedad: novedad, userVM: userVM)
             }
         }
     }
@@ -23,8 +24,11 @@ struct NovedadesManager: View {
 
 
 #Preview {
+    @Previewable var pvm = ProfilePicViewModel.mock()
+    var uvm = UserViewModel.mockLoaded()
     var novedades = NovedadesModel.mockNovedadText
     var sortedMock = novedades.sorted { $0.prioridad && !$1.prioridad}
-    NovedadesManager(novedades: sortedMock)
+    NovedadesManager(novedades: sortedMock, userVM: uvm)
+        .environmentObject(pvm)
 }
 

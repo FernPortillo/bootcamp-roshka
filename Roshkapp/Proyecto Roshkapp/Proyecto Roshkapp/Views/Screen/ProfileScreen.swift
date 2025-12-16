@@ -10,19 +10,30 @@ import PhotosUI
 
 struct ProfileScreen: View {
     let user : UserModel
+    @Binding var isProfileShowing : Bool
+    @State var editable : Bool = false
     var body : some View{
         // Si es nil, se coloca ""
-        let nombre = UserModel.getNombreUsuario(usuario: user)
         let dispositivos = user.equipos ?? []
-        let image = user.urlPerfil ?? ""
+        let correo = user.correo ?? ""
+        let telefono = user.telefono ?? ""
         ScrollView{
-            ProfileTop(name: nombre,
-                           cargo: user.cargo!.nombre,
-                           fechaEntrada: user.fechaIngreso!,
-                           imageB64: image)
-            ContactoSection(correo: "aa@gmail.com", telefono: "09999999")
-                .padding(.vertical)
-            DispositivosSection(dispositivos: dispositivos)
+            HStack{
+                Image(systemName: "xmark")
+                    .resizable()
+                    .frame(width: 32, height: 32)
+                    .onTapGesture {
+                        isProfileShowing.toggle()
+                    }
+                Spacer()
+            }
+            .padding()
+            VStack(alignment: .center){
+                ProfileTop(user: user, editable: $editable)
+                ContactoSection(correo: correo, telefono: telefono)
+                DispositivosSection(dispositivos: dispositivos)
+            }
+            .padding()
         }
         .background(Color.appBackgroundColor)
     }
@@ -30,7 +41,7 @@ struct ProfileScreen: View {
 
 #Preview {
     @Previewable let photosVM = ProfilePicViewModel.mock()
-    ProfileScreen(user: UserModel.mockUser)
+    ProfileScreen(user: UserModel.mockUser, isProfileShowing: .constant(false))
     .environmentObject(photosVM)
 }
 

@@ -54,6 +54,33 @@ struct UserModel : Codable
         disponibilidad: 100,
         equipos: DispositivoModel.mockDispositivos
     )
+    
+    static var mockUser2 = UserModel(
+        idUsuario: 3,
+        nombre: "María",
+        apellido: "Gómez",
+        nroCedula: "45678912",
+        correo: "maria.gomez@example.com",
+        rol: RolModel(
+            idRol: 1,
+            nombre: "OPERACIONES"
+        ),
+        fechaIngreso: "2019-08-01",
+        antiguedad: "5 años",
+        diasVacaciones: 25,
+        estado: "Activo",
+        telefono: "097112233",
+        cargo: CargoModel(
+            idCargo: 3,
+            nombre: "Tech Lead"
+        ),
+        fechaNacimiento: "1990-02-14",
+        diasVacacionesRestante: 18,
+        foco: "Gestión de equipos",
+        urlPerfil: "https://example.com/perfiles/maria.jpg",
+        disponibilidad: 70,
+        equipos: DispositivoModel.mockDispositivos
+    )
 }
 
 // Para probar frpm@gmail.com

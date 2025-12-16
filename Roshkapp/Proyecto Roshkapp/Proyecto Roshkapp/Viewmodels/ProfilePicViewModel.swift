@@ -68,4 +68,8 @@ final class ProfilePicViewModel: ObservableObject
         return imageData.base64EncodedString()
     }
     
+    func checkIfMyUser(user: UserModel) -> Bool{
+        return profilePicUsecase.isMyUser(user: user)
+    }
+    
 }

@@ -23,11 +23,31 @@ final class UserViewModel: ObservableObject
         state = .loading
         do{
             let user = try await userUC.getUser()
+            print("\(user.nombre) is \(user.rol.nombre)")
             state = .loaded(user)
         }
         catch{
             state = .failed(error)
         }
+    }
+    
+    @MainActor
+    func getUserById(idUser: Int) async -> UserModel?{
+        do{
+            let user = try await userUC.getUser()
+            print("\(user.nombre) is \(user.rol.nombre)")
+            return user
+        }
+        catch{
+            state = .failed(error)
+        }
+        return nil
+    }
+    
+    func checkUserIsMyUser(user: UserModel) -> Bool{
+        let isMyUser = userUC.checkUserisMyUser(user: user)
+        print("\(isMyUser) es mi usuario")
+        return isMyUser
     }
 }
 

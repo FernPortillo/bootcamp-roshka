@@ -31,7 +31,8 @@ struct AppRootView: View {
         else {
             // Crear LoginViewModel aca, dentro del body
             if test {
-                ProfileScreen(user: UserModel.mockUser)
+                // ProfileScreen(user: UserModel.mockUser)
+                Text("test")
             }
             else
             {

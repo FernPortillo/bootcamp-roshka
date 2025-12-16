@@ -26,11 +26,34 @@ struct NovedadesModel : Codable {
             idNovedades: 1,
             titulo: "Prueba desde Postman",
             descripcion: "Esta es una novedad de prueba",
-            imagenUrl: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/npOnzAbLh6VOIu3naU5QaEcTepo.jpg",
+            imagenUrl: "1",
             fechaExpiracion: "2025-12-30",
             activo: true,
             prioridad: true,
             usuario: UserModel.mockUser)
+    }
+    
+    static var mockCarrusel: [NovedadesModel]{
+        return [NovedadesModel(
+            idNovedades: 1,
+            titulo: "Prueba desde Postman",
+            descripcion: "Esta es una novedad de prueba",
+            imagenUrl: "1",
+            fechaExpiracion: "2025-12-30",
+            activo: true,
+            prioridad: true,
+            usuario: UserModel.mockUser),
+               NovedadesModel(
+                    idNovedades: 2,
+                    titulo: "Otro Test",
+                    descripcion: "Bienvenidos a etc",
+                    imagenUrl: "2",
+                    fechaExpiracion: "2025-12-30",
+                    activo: true,
+                    prioridad: true,
+                    usuario: UserModel.mockUser2)
+        
+        ]
     }
     
     static var mockNovedadText: [NovedadesModel]{
@@ -52,7 +75,7 @@ struct NovedadesModel : Codable {
                 fechaExpiracion: "2025-12-31",
                 activo: true,
                 prioridad: false,
-                usuario: UserModel.mockUser),
+                usuario: UserModel.mockUser2),
             NovedadesModel(
                 idNovedades: 3,
                 titulo: "Hola Roshkeros",

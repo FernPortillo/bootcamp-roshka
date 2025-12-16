@@ -8,11 +8,24 @@
 import SwiftUI
 
 struct RolBadge: View {
+    let rol : RolModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        let nombre = rol.nombre
+        let icono = RolModel.getRoleIcon(nombre)
+        HStack{
+            Image(systemName: icono)
+            Text(nombre)
+                .font(.regularSmaller)
+        }
+        .padding(Spacing.s)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .foregroundStyle(Color.darkBackgroundColor)
+        )
     }
 }
 
-#Preview {
-    RolBadge()
+#Preview(traits: .sizeThatFitsLayout) {
+    let rol = RolModel(idRol: 1, nombre: "TEAM LIDER")
+    RolBadge(rol: rol)
 }

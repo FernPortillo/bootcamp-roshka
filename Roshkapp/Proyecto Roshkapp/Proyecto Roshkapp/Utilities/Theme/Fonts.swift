@@ -10,6 +10,7 @@ import SwiftUI
 extension Font {
     
     static let blackSmall : Font = Font.custom("Lato-Black", size: 14)
+    static let blackMedium: Font = Font.custom("Lato-Black", size: 20)
     static let blackLarge : Font = Font.custom("Lato-Black", size: 24)
 
     

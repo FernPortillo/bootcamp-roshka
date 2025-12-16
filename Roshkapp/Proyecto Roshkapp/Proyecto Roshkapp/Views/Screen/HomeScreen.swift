@@ -13,46 +13,58 @@ struct HomeScreen: View {
     
     
     var body: some View {
-        VStack(alignment: .leading){
-            switch userVM.state {
-            case .idle:
-                Text("")
-                    .onAppear{
-                        Task{
-                            await userVM.getUser()
-                            await novedadesVM.loadNovedades()
+        ZStack{
+
+            Color.appBackgroundColor
+                .ignoresSafeArea()
+            
+            VStack(alignment: .leading){
+                switch userVM.state {
+                case .idle:
+                    Text("")
+                        .onAppear{
+                            Task{
+                                await userVM.getUser()
+                                await refreshData()
+                            }
+                        }
+                case .loading:
+                    ProgressView()
+                case .loaded(let user):
+                    ScrollView{
+                        HomeMenuTopbar(user: user)
+                            .padding(.vertical, Spacing.s)
+                        InfiniteCarouselView()
+                            .padding(.bottom, Spacing.mm)
+                        
+                        //MARK: cambiar para probar con novedades real
+                        // Para testeo
+                        let mock = NovedadesModel.mockNovedadText.sorted { $0.prioridad && !$1.prioridad}
+    //                    let ordenadas = novedadesVM.novedades.sorted { $0.prioridad & $1.prioridad}
+                        
+                        
+                        
+                        if !mock.isEmpty{
+                            NovedadesManager(novedades: mock, userVM: userVM)
+                        }
+                        else
+                        {
+                            EmptySectionComponent(mensaje: "No hay novedades a mostrar", icon: IconsEnum.sadface.rawValue)
                         }
                     }
-            case .loading:
-                ProgressView()
-            case .loaded(let user):
-                ScrollView{
-                    HomeMenuTopbar(user: user)
-                        .padding(.vertical, Spacing.s)
-                    InfiniteCarouselView()
-                        .padding(.bottom, Spacing.mm)
-                    
-                    //MARK: cambiar para probar con novedades real
-                    // Para testeo
-                    let mock = NovedadesModel.mockNovedadText.sorted { $0.prioridad && !$1.prioridad}
-//                    let ordenadas = novedadesVM.novedades.sorted { $0.prioridad & $1.prioridad}
-                    
-                    
-                    
-                    if !mock.isEmpty{
-                        NovedadesManager(novedades: mock)
+                    .refreshable {
+                        await refreshData()
                     }
-                    else
-                    {
-                        EmptySectionComponent(mensaje: "No hay novedades a mostrar", icon: IconsEnum.sadface.rawValue)
-                    }
+                    .padding(Spacing.s)
+                case .failed(let error):
+                    Text(error.localizedDescription)
                 }
-                .padding(Spacing.s)
-            case .failed(let error):
-                Text(error.localizedDescription)
             }
         }
-        .background(Color.appBackgroundColor)
+        }
+    
+    func refreshData() async{
+        await novedadesVM.loadNovedades()
     }
 }
 

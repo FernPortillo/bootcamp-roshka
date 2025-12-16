@@ -11,10 +11,12 @@ struct InfiniteCarouselView : View {
     @State private var currentIndex = 0
     @State private var scrollPosition : String?
     
-    let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
-    
-    let nombreImagenes : [String] = ["1", "2", "3", "4", "5", "6", "7"]
-    
+    let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
+    let novedades : [NovedadesModel] = NovedadesModel.mockCarrusel
+    var nombreImagenes: [String] {
+        novedades.map { $0.imagenUrl! }
+    }
+
     var body: some View{
         VStack{
             ScrollView(.horizontal){

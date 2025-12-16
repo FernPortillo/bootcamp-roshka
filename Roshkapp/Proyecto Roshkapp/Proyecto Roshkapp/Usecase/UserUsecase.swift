@@ -27,5 +27,16 @@ final class UserUsecase : AuthenticatedUsecase
         return user
     }
     
+    func getUserById(idUser: Int) async throws -> UserModel {
+        let user = try await executeWithToken{ token in
+            try await userRepository.getUserById(token: token, idUser: idUser)
+        }
+        return user
+    }
+    
+    func checkUserisMyUser(user: UserModel) -> Bool{
+        return appState.checkMyUser(user: user)
+    }
+    
         //TODO: Logout
 }

@@ -7,13 +7,26 @@
 
 import SwiftUI
 
-struct NotificacionImageFull: View {
-    var notificacion: 
+struct NovedadImageFull: View {
+    let novedad : NovedadesModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        let imagenUrl = novedad.imagenUrl ?? ""
+        ScrollView{
+            VStack(alignment: .leading)
+            {
+                Image("1")
+                    .resizable()
+                    .scaledToFit()
+                    .padding()
+            }
+        }
+        .background(Color.appBackgroundColor)
     }
 }
 
 #Preview {
-    NotificacionImageFull()
+    @Previewable var photosVM = ProfilePicViewModel.mock()
+    let novedad = NovedadesModel.mockNovedadConImagen
+    NovedadImageFull(novedad: novedad)
+        .environmentObject(photosVM)
 }

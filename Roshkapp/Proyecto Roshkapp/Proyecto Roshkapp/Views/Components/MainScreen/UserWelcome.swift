@@ -7,13 +7,21 @@
 
 import SwiftUI
 
-// Imagen deberia ser clicable
 struct UserWelcome: View {
+    @State private var isProfileShowing = false
     let user: UserModel
+    var editable: Bool = false
     @EnvironmentObject var photosVM : ProfilePicViewModel
     var body: some View {
         VStack(alignment: .leading){
             ProfilePicLoader(image: photosVM.imageB64 ?? (user.urlPerfil ?? ""), size: 32)
+                .onTapGesture {
+                    isProfileShowing.toggle()
+                }
+                .sheet(isPresented: $isProfileShowing)
+            {
+                ProfileScreen(user: user, isProfileShowing: $isProfileShowing, editable: editable)
+            }
             Text("Bienvenido! \(user.nombre)")
         }
     }

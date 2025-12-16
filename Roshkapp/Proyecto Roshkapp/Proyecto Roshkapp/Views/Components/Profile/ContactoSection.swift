@@ -11,12 +11,12 @@ struct ContactoSection: View {
     let correo: String
     let telefono: String
     var body: some View {
-        VStack(alignment: .leading){
-            Text("Contacto")
-                .font(.regularLarge)
-            ProfileComponentInfo(icon: "envelope", value: correo)
-            ProfileComponentInfo(icon: "phone", value: telefono)
-        }
+            VStack(alignment: .leading){
+                Text("Contacto")
+                    .font(.regularLarge)
+                ProfileComponentInfo(icon: "envelope", value: correo)
+                ProfileComponentInfo(icon: "phone", value: telefono)
+            }
     }
 }
 

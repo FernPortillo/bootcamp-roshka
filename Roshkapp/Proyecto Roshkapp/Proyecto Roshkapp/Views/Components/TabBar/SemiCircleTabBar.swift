@@ -2,7 +2,7 @@
 import SwiftUI
 
 struct SemiCircleTabBar: View {
-    @State private var isExpanded: Bool = false
+    @Binding var isExpanded: Bool 
     let onActionSelected: (BotonSolicitudesTabViewEnumTests) -> Void
     var body: some View{
         ZStack{
@@ -10,7 +10,7 @@ struct SemiCircleTabBar: View {
             ForEach(allTabs.indices, id: \.self) { index in
                 let tabView = allTabs[index]
                 let angle = angleForTabButton(at: index, total: allTabs.count)
-                let radius : CGFloat = 100
+                let radius : CGFloat = 120
                 Button {
                     withAnimation {
                         onActionSelected(tabView)

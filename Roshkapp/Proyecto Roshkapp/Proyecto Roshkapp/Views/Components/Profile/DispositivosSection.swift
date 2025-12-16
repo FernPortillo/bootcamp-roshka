@@ -15,12 +15,11 @@ struct DispositivosSection: View {
             Text("Dispositivos")
                 .font(.regularLarge)
             VStack{
-                if !dispositivos.isEmpty{
+                if dispositivos.isEmpty{
                     EmptySectionComponent(
                         mensaje: "Este usuario no posee dispositivos",
                         icon: IconsEnum.cancel.rawValue,
                         systemName: true)
-                    .frame(width: .infinity)
                 }
                 else {
                     ForEach(dispositivos, id: \.idDispositivo) {dispositivo in
