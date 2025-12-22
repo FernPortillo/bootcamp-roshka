@@ -20,7 +20,7 @@ struct NovedadImageFull: View {
             VStack(alignment: .leading)
             {
                 HStack{
-                    ProfilePic(user: user, userEsTh: permisosTH, esMiPerfil: esMiPerfil)
+                    ProfilePic(user: user, esMiPerfil: esMiPerfil)
                     Text(UserModel.getNombreUsuario(usuario: user))
                         .font(.regularMedium)
                 }

@@ -13,7 +13,6 @@ struct NovedadesText: View {
     @State private var isNovedadFullyVisible = false
     @State private var lineLimit = 1
     let novedad : NovedadesModel
-    var permisosTH: Bool = false
     var body: some View {
         let user = novedad.usuario
         let titulo = novedad.titulo
@@ -22,7 +21,7 @@ struct NovedadesText: View {
         VStack(alignment: .leading) {
             HStack{
                 let esMiPerfil = appState.checkMyUser(user: user)
-                ProfilePic(user: user, userEsTh: permisosTH, esMiPerfil: esMiPerfil)
+                ProfilePic(user: user, esMiPerfil: esMiPerfil)
                 VStack(alignment: .leading){
                     Text(UserModel.getNombreUsuario(usuario: user))
                         .font(.regularMedium)

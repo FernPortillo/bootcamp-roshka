@@ -21,12 +21,12 @@ struct HomeMenuTopbar: View {
                     isShowing.toggle()
                 }
             Spacer()
-            Image(systemName: "bell")
-                .resizable()
-                .frame(width: 36, height: 36)
-                .foregroundStyle(colors.mainColor)
-                .onTapGesture {
-                }
+//            Image(systemName: "bell")
+//                .resizable()
+//                .frame(width: 36, height: 36)
+//                .foregroundStyle(colors.mainColor)
+//                .onTapGesture {
+//                }
         }
         .padding(Spacing.mm)
     }

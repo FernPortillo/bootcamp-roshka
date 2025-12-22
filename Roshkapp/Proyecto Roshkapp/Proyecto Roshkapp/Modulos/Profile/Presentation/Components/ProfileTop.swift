@@ -47,7 +47,6 @@ struct ProfileTop: View {
             .overlay{
                 ZStack{
                     if editable{
-                        // Verificar si tiene foto, si tiene, la puede borrar
                         Circle()
                             .foregroundStyle(colors.appBackgroundColor)
                         Image(systemName: "pencil.circle.fill")
@@ -57,17 +56,8 @@ struct ProfileTop: View {
                 }
                 .frame(width: 64, height: 64)
                 .offset(x: 48, y: 64)
-                .contextMenu {
-                    Button{
-                        showGalleryPhotoPicker = true
-                    } label: {
-                        Label("Elegir Foto de Galeria", systemImage: "photo")
-                    }
-                    Button(role: .destructive){
-                        print("Borrar foto")
-                    } label: {
-                        Label("Eliminar Foto", systemImage: "trash")
-                    }
+                .onTapGesture {
+                    showGalleryPhotoPicker = true
                 }
                 .photosPicker(isPresented: $showGalleryPhotoPicker,
                               selection: $photosVM.photoPickerItem,

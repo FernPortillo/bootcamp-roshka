@@ -12,7 +12,7 @@ struct ProfilePic: View {
     @EnvironmentObject private var userVM: UserViewModel
     @EnvironmentObject private var profilePicVM : ProfilePicViewModel
     let user : UserModel
-    var userEsTh : Bool = false
+    let userEsTh : Bool = false
     var imageSize : CGFloat = 28
     var esMiPerfil : Bool = false
     
@@ -23,17 +23,7 @@ struct ProfilePic: View {
         .onTapGesture {
             if esMiPerfil{
                 print("Si, es mi perfil, yendo a profileScreen")
-                router.navigate(to: .profile(user: user, permisosTH: userEsTh))
-            }
-            else if userEsTh{
-                Task{
-                    let user = await userVM.getUserById(idUser: user.idUsuario)
-                }
-                print(user)
-                print("Ir al perfil")
-            }
-            else{
-                print("No, no es mi perfil y no tengo permisos")
+                router.navigate(to: .profile(user: user, permisosTH: esMiPerfil))
             }
         }
     }
