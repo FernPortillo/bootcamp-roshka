@@ -8,37 +8,22 @@ import SwiftUI
 
 @main
 struct Proyecto_RoshkappApp: App {
-    @StateObject private var appState: AppState = AppState()
-    @StateObject private var keychainManager = KeychainManager.shared
-    
-    private let appService = AppService()
-    private let loginUC: LoginUsecase
-    private let authRepository: AuthRepositoryImplementation
-    private let userRepository: UserRepositoryImplementation
-    private let novedadesRepository : NovedadesRepositoryImplementation
-    private let photosRepository: ProfilePicRepositoryImplementation
-    
-    init() {
-        self.authRepository = AuthRepositoryImplementation(appService: appService)
-        self.userRepository = UserRepositoryImplementation(appService: appService)
-        self.loginUC = LoginUsecase(keychain: KeychainManager.shared, authRepository: authRepository)
-        self.novedadesRepository = NovedadesRepositoryImplementation(appService: appService)
-        self.photosRepository = ProfilePicRepositoryImplementation(appService: appService)
-    }
+    private let repositoryFactory = RepositoryFactory()
     
     var body: some Scene {
         WindowGroup {
             AppRootView(
-                userRepository: userRepository,
-                authRepository: authRepository,
-                novedadesRepository: novedadesRepository,
-                photosRepository: photosRepository,
-                appService: appService,
-                loginUC: loginUC,
+                repositoryFactory: repositoryFactory
             )
-            .preferredColorScheme(.light)
-            .environmentObject(keychainManager)
-            .environmentObject(appState)
+            .environmentObject(AppState(loginUC: repositoryFactory.loginUsecase))
+            .environmentObject(repositoryFactory.userPrefs)
+            .withAppColors()
+            
         }
     }
 }
+
+/// StateObject -> Singletons, usar cuando la vista crea el objeto
+/// Environment Object -> Cuando se tiene que recibir el objeto
+/// ObservedObject -> Para pasar el objeto como parametro
+/// let -> Propiedades inmutables

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2A00F3452EE1D71F0064F6BB /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 2A00F3442EE1D71F0064F6BB /* KeychainAccess */; };
+		2A0BBA012EF48BB900B359E6 /* Cloudinary in Frameworks */ = {isa = PBXBuildFile; productRef = 2A0BBA002EF48BB900B359E6 /* Cloudinary */; };
+		2A232D502EF8C7B0006EE1A0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2A232D4F2EF8C7B0006EE1A0 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A232D502EF8C7B0006EE1A0 /* Kingfisher in Frameworks */,
+				2A0BBA012EF48BB900B359E6 /* Cloudinary in Frameworks */,
 				2A00F3452EE1D71F0064F6BB /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +75,8 @@
 			name = "Proyecto Roshkapp";
 			packageProductDependencies = (
 				2A00F3442EE1D71F0064F6BB /* KeychainAccess */,
+				2A0BBA002EF48BB900B359E6 /* Cloudinary */,
+				2A232D4F2EF8C7B0006EE1A0 /* Kingfisher */,
 			);
 			productName = "Proyecto Roshkapp";
 			productReference = 2AA4B8D62EDF63EF00737072 /* Proyecto Roshkapp.app */;
@@ -102,6 +108,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				2A00F3432EE1D71F0064F6BB /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				2A0BB9FF2EF48BB900B359E6 /* XCRemoteSwiftPackageReference "cloudinary_ios" */,
+				2A232D4E2EF8C7AF006EE1A0 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2AA4B8D72EDF63EF00737072 /* Products */;
@@ -266,6 +274,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Proyecto-Roshkapp-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Usamos Face ID para iniciar sesión rápidamente.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -300,6 +311,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Proyecto-Roshkapp-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Usamos Face ID para iniciar sesión rápidamente.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -355,6 +369,22 @@
 				kind = branch;
 			};
 		};
+		2A0BB9FF2EF48BB900B359E6 /* XCRemoteSwiftPackageReference "cloudinary_ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cloudinary/cloudinary_ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.4;
+			};
+		};
+		2A232D4E2EF8C7AF006EE1A0 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.6.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -362,6 +392,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2A00F3432EE1D71F0064F6BB /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
+		};
+		2A0BBA002EF48BB900B359E6 /* Cloudinary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A0BB9FF2EF48BB900B359E6 /* XCRemoteSwiftPackageReference "cloudinary_ios" */;
+			productName = Cloudinary;
+		};
+		2A232D4F2EF8C7B0006EE1A0 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A232D4E2EF8C7AF006EE1A0 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

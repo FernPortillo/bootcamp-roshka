@@ -1,0 +1,3196 @@
+{
+	"info": {
+		"_postman_id": "514330d4-e78d-45a8-8aa3-7436e73841b0",
+		"name": "proyecto_final",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49978712",
+		"_collection_link": "https://tmereles-9517665.postman.co/workspace/Tiago-Mereles's-Workspace~322e8462-b932-4f6c-896e-d4f5602a265d/collection/49978712-514330d4-e78d-45a8-8aa3-7436e73841b0?action=share&source=collection_link&creator=49978712"
+	},
+	"item": [
+		{
+			"name": "TH",
+			"item": [
+				{
+					"name": "TH/resetUserPassword",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc1ODc0NzcxNSwiaWF0IjoxNzU4NzQwNTE1fQ.TUhE1mNLOGUQW81ukCLESbZeWzkiQinYHvpuYpzdSwk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/users/23/resetpassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"users",
+								"23",
+								"resetpassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/getAllEmployees",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc1ODk4ODA1NSwiaWF0IjoxNzU4OTgwODU1fQ.m88FO6LxNq1DpEv6bn7KI9Vc4Lf3lFkwctTT5ZtCOAY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"users"
+							],
+							"query": [
+								{
+									"key": "rol_id",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "cargo_id",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "A",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/getEmployeeById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc1ODc0NzU2NiwiaWF0IjoxNzU4NzQwMzY2fQ.Ztl0VuRybCr1Ip7aKJnYqUrnHQcY_RfG3bycLI3LA4k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/users/23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"users",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/addEmployee",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc1ODc0NzU2NiwiaWF0IjoxNzU4NzQwMzY2fQ.Ztl0VuRybCr1Ip7aKJnYqUrnHQcY_RfG3bycLI3LA4k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "        {\r\n            \"nombre\": \"Test1\",\r\n            \"apellido\": \"Test1\",\r\n            \"nroCedula\": 1436181,\r\n            \"correo\": \"test1@roshka.com\",\r\n            \"rol\": {\r\n                \"idRol\": 1\r\n            },\r\n            \"fechaIngreso\": \"2005-03-10\",\r\n            \"estado\": \"A\",\r\n            \"telefono\": \"+595981254672\",\r\n            \"cargo\": {\r\n                \"idCargo\": 4\r\n            },\r\n            \"fechaNacimiento\": \"2005-11-15\",\r\n            \"requiereCambioContrasena\": true,\r\n            \"url_perfil\": \"test\",\r\n            \"disponibilidad\": 20\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/updateEmployee",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc1ODU5MDg4NSwiaWF0IjoxNzU4NTgzNjg1fQ.3WhmVEqvpDltSvYIBS8BaqNmMTcTsFMSK-OQxHdPHKk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Test2Updatedasd\",\r\n    \"apellido\": \"Test2Updated\",\r\n    \"nroCedula\": 1436783,\r\n    \"correo\": \"test2Updated@roshka.com\",\r\n    \"roles\": {\r\n        \"idRol\": 4\r\n    },\r\n    \"fechaIngreso\": \"2005-03-09\",\r\n    \"antiguedad\": null,\r\n    \"diasVacaciones\": 20,\r\n    \"estado\": \"A\",\r\n    \"contrasena\": \"minuevacontraseñarepro\",\r\n    \"telefono\": \"+595 981 254672\",\r\n    \"cargos\": {\r\n        \"idCargo\": 12\r\n    },\r\n    \"fechaNacimiento\": \"2005-11-14\",\r\n    \"diasVacacionesRestante\": 0,\r\n    \"requiereCambioContrasena\": true,\r\n    \"disponibilidad\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/users/22",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"users",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/deleteEmployee",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc1ODgxODg4NSwiaWF0IjoxNzU4ODExNjg1fQ.YzgV0VeHUPiSESK8ZL2QRZyHlz4b0ZH_OFx71X0xUCw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Prueba8cambiadoOtravezJaja\",\r\n    \"apellido\": \"Prueba8ApellidoCambiado\",\r\n    \"nroCedula\": 36245675,\r\n    \"correo\": \"prueba.perez@email.com\",\r\n    \"idRol\": 2,\r\n    \"fechaIngreso\": \"2022-08-26\",\r\n    \"estado\": true,\r\n    \"contrasena\": \"CarlosPass2025\",\r\n    \"telefono\": \"0991122334\",\r\n    \"idEquipo\": 1,\r\n    \"idCargo\": 1,\r\n    \"fechaNacimiento\": \"1990-05-15\",\r\n    \"requiereCambioContrasena\": false\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/users/23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"users",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/getRequestSortByEstado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc1ODg0OTUzMSwiaWF0IjoxNzU4ODQyMzMxfQ.ZmEohapFZER6Lf05m5FqNlHwnaRfdjlhf5NAqv2iojI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/users/requests/sortby?estado=A",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"users",
+								"requests",
+								"sortby"
+							],
+							"query": [
+								{
+									"key": "estado",
+									"value": "A"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH / acceptRequest",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc1ODU5MzA3MywiaWF0IjoxNzU4NTg1ODczfQ._ravH1LcXhTC9NO-Duo_-Bhu534PNL0-TjX-1_gOML4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idUsuario\": 32,\r\n    \"nombre\": \"Test3Updated\",\r\n    \"apellido\": \"Test3Updated\",\r\n    \"nroCedula\": 1436783,\r\n    \"correo\": \"test3Updated@roshka.com\",\r\n    \"roles\": {\r\n        \"idRol\": 10\r\n    },\r\n    \"fechaIngreso\": \"2005-03-09\",\r\n    \"antiguedad\": null,\r\n    \"diasVacaciones\": 20,\r\n    \"estado\": \"A\",\r\n    \"contrasena\": \"test\",\r\n    \"telefono\": \"+595 981 254672\",\r\n    \"cargos\": {\r\n        \"idCargo\": 12\r\n    },\r\n    \"fechaNacimiento\": \"2005-11-14\",\r\n    \"diasVacacionesRestante\": 0,\r\n    \"requiereCambioContrasena\": true,\r\n    \"disponibilidad\": 20\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/users/requests/2/accept",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"users",
+								"requests",
+								"2",
+								"accept"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH / rejectRequest",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc1ODU5MzMyOCwiaWF0IjoxNzU4NTg2MTI4fQ.wVBtsW2AkKepxF3tg5oUr953HsxGFOLJkxqeMuSTx6M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/users/requests/9/reject",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"users",
+								"requests",
+								"9",
+								"reject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/getAllCargos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc1ODgyMTQxOCwiaWF0IjoxNzU4ODE0MjE4fQ.jKArDfBD4ZWFPPiMTrq2C6esb502uDaBEGrewu-nHac",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/cargos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"cargos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/addCargos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc1ODgyMTQxOCwiaWF0IjoxNzU4ODE0MjE4fQ.jKArDfBD4ZWFPPiMTrq2C6esb502uDaBEGrewu-nHac",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"test3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/cargos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"cargos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/updateCargo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc1ODg0NjI5NywiaWF0IjoxNzU4ODM5MDk3fQ.HqmcCdTTguEjYJ_-Cf5K60ywCuO6irRqTBvIetAQlS8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"test3updated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/cargos/19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"cargos",
+								"19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/updateCargo Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc1ODg0NjI5NywiaWF0IjoxNzU4ODM5MDk3fQ.HqmcCdTTguEjYJ_-Cf5K60ywCuO6irRqTBvIetAQlS8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"test3updated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/cargos/19",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"cargos",
+								"19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "traer todos los roles (TH)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "traer todos los solicitudes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar solicitud (TH)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODk5NTYyNywiaWF0IjoxNzU4OTg4NDI3fQ.Hmr5wTBAMRps5eNSB02RmwyXnvMU0RMSOu0aF3-EVFo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/sysadmin/allRequests",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sysadmin",
+								"allRequests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/GetNovedades",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc2NDYxNzczMSwiaWF0IjoxNzY0NjEwNTMxfQ.MfgtzjknMtqX7aTx7HecYPtUjxrOrKtqiXveYqTE_cE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"titulo\": \"Prueba desde Postman\",\r\n  \"descripcion\": \"Esta es una novedad de prueba\",\r\n  \"imagenUrl\": \"https://ejemplo.com/banner.jpg\",\r\n  \"fechaExpiracion\": \"2025-12-31\",\r\n  \"activo\": true,\r\n  \"categoria\": \"INFORMACION\",\r\n  \"prioridad\": \"ALTA\",\r\n  \"idRol\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/novedades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"novedades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/UpdateNovedades",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc2NDYxNzczMSwiaWF0IjoxNzY0NjEwNTMxfQ.MfgtzjknMtqX7aTx7HecYPtUjxrOrKtqiXveYqTE_cE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 10,\r\n  \"titulo\": \"Nuevo título\",\r\n  \"descripcion\": \"Descripción actualizada\",\r\n  \"imagenUrl\": null,\r\n  \"fechaExpiracion\": \"2025-12-15\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/novedades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"novedades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/DeleteNovedadesById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc2NDYxNzczMSwiaWF0IjoxNzY0NjEwNTMxfQ.MfgtzjknMtqX7aTx7HecYPtUjxrOrKtqiXveYqTE_cE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/novedades/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"novedades",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/GetAllNovedades",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc2NDYxNzczMSwiaWF0IjoxNzY0NjEwNTMxfQ.MfgtzjknMtqX7aTx7HecYPtUjxrOrKtqiXveYqTE_cE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/novedades/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"novedades",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/GetNovedadesActivas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc2NDYxNzczMSwiaWF0IjoxNzY0NjEwNTMxfQ.MfgtzjknMtqX7aTx7HecYPtUjxrOrKtqiXveYqTE_cE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/novedades/rol/{idRol}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"novedades",
+								"rol",
+								"{idRol}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/GetNovedadesByPrioridad",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc2NDYxNzczMSwiaWF0IjoxNzY0NjEwNTMxfQ.MfgtzjknMtqX7aTx7HecYPtUjxrOrKtqiXveYqTE_cE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "GET http://localhost:8080/api/v1/admin/th/novedades/all",
+							"protocol": "GET http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"novedades",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/GetNovedadesCarrusel",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc2NDYxNzczMSwiaWF0IjoxNzY0NjEwNTMxfQ.MfgtzjknMtqX7aTx7HecYPtUjxrOrKtqiXveYqTE_cE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "GET http://localhost:8080//api/v1/admin/th/carrusel",
+							"protocol": "GET http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"",
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"carrusel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/GetNovedadesAvisos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc2NDYxNzczMSwiaWF0IjoxNzY0NjEwNTMxfQ.MfgtzjknMtqX7aTx7HecYPtUjxrOrKtqiXveYqTE_cE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/avisos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"avisos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/GetNovedadesRecientes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc2NDYxNzczMSwiaWF0IjoxNzY0NjEwNTMxfQ.MfgtzjknMtqX7aTx7HecYPtUjxrOrKtqiXveYqTE_cE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/avisos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"avisos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TH/GetNovedadesAntiguas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc2NDYxNzczMSwiaWF0IjoxNzY0NjEwNTMxfQ.MfgtzjknMtqX7aTx7HecYPtUjxrOrKtqiXveYqTE_cE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/th/avisos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"th",
+								"avisos"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aEB0aC5jb20iLCJyb2wiOjEsImV4cCI6MTc1ODgxNDc4NSwiaWF0IjoxNzU4ODA3NTg1fQ.0ykjlGU3L1TVkd93FntLF8IJbjcVyAzw-sVNpFVFfGI",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "OP",
+			"item": [
+				{
+					"name": "http://localhost:8080/login",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"correo\":\"ex.empleado2@roshka.com\",\r\n    \"contrasena\":\"test\"\r\n    // $2a$12$IKHuOT3frdNwTDLd9LFJtueR.a/o68xOkSDPUmTczMsOnypClAqAe\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "metadatas Tec Clients TL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJleC5lbXBsZWFkbzJAcm9zaGthLmNvbSIsInJvbCI6NCwiZXhwIjoxNzU4NTc4MTUwLCJpYXQiOjE3NTg1NzA5NTB9.-pbN4i9Q89XnlOFw-6JqiBMDyZXkHMGLjiFHr53kUiQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/operations/metadatas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"operations",
+								"metadatas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "metadatas AllUsersDesarrollos",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJleC5lbXBsZWFkbzJAcm9zaGthLmNvbSIsInJvbCI6NCwiZXhwIjoxNzU4NTc4MTUwLCJpYXQiOjE3NTg1NzA5NTB9.-pbN4i9Q89XnlOFw-6JqiBMDyZXkHMGLjiFHr53kUiQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/operations/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"operations",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/v1/admin/operations/teams",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcEBvcC5jb20iLCJyb2wiOjQsImV4cCI6MTc1ODk5MjQ2OSwiaWF0IjoxNzU4OTg1MjY5fQ.5f8A051cFcipCYeVCsBkI_9vk5irUyKkAsBV0Yk88Qc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/operations/teams",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"operations",
+								"teams"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "nombreAsc",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "nombreDesc",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "clienteAsc",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "clienteDesc",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "liderAsc",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "liderDesc",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "estadoAsc",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "estadoDesc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/v1/admin/operations/team/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcEBvcC5jb20iLCJyb2wiOjQsImV4cCI6MTc1ODgxNTQwMywiaWF0IjoxNzU4ODA4MjAzfQ.I_7DNSAIZLxKzpLxp22e-RRH0P5gNBv3GfQYBfNhP1k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/operations/team/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"operations",
+								"team",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/v1/admin/operations/team",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcEBvcC5jb20iLCJyb2wiOjQsImV4cCI6MTc1ODgxNTQwMywiaWF0IjoxNzU4ODA4MjAzfQ.I_7DNSAIZLxKzpLxp22e-RRH0P5gNBv3GfQYBfNhP1k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Equipo 123\",\r\n  \"idLider\": 17,\r\n  \"fechaInicio\": \"2025-09-25\",\r\n  \"fechaLimite\": \"2025-12-31\",\r\n  \"idCliente\": 3,\r\n  \"estado\": \"A\",\r\n  \"idTecnologias\": [8, 3, 4],\r\n  \"usuarios\": [\r\n    {\r\n      \"idUsuario\": 10,\r\n      \"porcentajeTrabajo\": 20.0,\r\n      \"fechaEntrada\": \"2024-01-15\",\r\n      \"fechaFin\": \"2024-05-15\",\r\n      \"estado\": \"A\"\r\n    },\r\n    {\r\n      \"idUsuario\": 11,\r\n      \"porcentajeTrabajo\": 1.0,\r\n      \"fechaEntrada\": \"2024-01-15\",\r\n      \"fechaFin\": \"2024-06-15\",\r\n      \"estado\": \"A\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/operations/team",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"operations",
+								"team"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/v1/admin/operations/team/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJleC5lbXBsZWFkbzJAcm9zaGthLmNvbSIsInJvbCI6NCwiZXhwIjoxNzU4NTc4NTU4LCJpYXQiOjE3NTg1NzEzNTh9.vaB603-AdI2wHdSp7wA81w0_OfnF0iPS_c2Pd_WlcoE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idEquipo\": 33,\r\n    \"lider\": {\r\n        \"idUsuario\": 7,\r\n        \"nombre\": \"Sofía Alejandra\",\r\n        \"apellido\": \"Ramírez Cáceres\",\r\n        \"correo\": \"sofia.ramirez@roshka.com\",\r\n        \"disponibilidad\": 100\r\n    },\r\n    \"tecnologias\": [\r\n        {\r\n            \"idTecnologia\": 8,\r\n            \"nombre\": \"MySQL\",\r\n            \"descripcion\": \"Sistema de gestión de bases de datos relacionales\",\r\n            \"fechaCreacion\": \"2025-09-20\"\r\n        },\r\n        {\r\n            \"idTecnologia\": 3,\r\n            \"nombre\": \"Angular\",\r\n            \"descripcion\": \"Framework de desarrollo frontend\",\r\n            \"fechaCreacion\": \"2025-09-20\"\r\n        },\r\n        {\r\n            \"idTecnologia\": 4,\r\n            \"nombre\": \"React\",\r\n            \"descripcion\": \"Biblioteca de JavaScript para interfaces de usuario\",\r\n            \"fechaCreacion\": \"2025-09-20\"\r\n        }\r\n    ],\r\n    \"nombre\": \"Equipo 123\",\r\n    \"fechaInicio\": \"2025-09-24\",\r\n    \"fechaLimite\": \"2025-12-30\",\r\n    \"cliente\": {\r\n        \"idCliente\": 3,\r\n        \"nombre\": \"Personal Paraguay\",\r\n        \"nroTelefono\": \"+595213456789\",\r\n        \"correo\": \"desarrollo@personal.com.py\",\r\n        \"ruc\": \"80028932-4\",\r\n        \"fechaCreacion\": \"2025-09-20\"\r\n    },\r\n    \"fechaCreacion\": \"2025-09-22\",\r\n    \"estado\": \"A\",\r\n    \"usuarios\": null,\r\n    \"usuariosAsignacion\": [\r\n        {\r\n            \"idUsuario\": 10,\r\n            \"nombre\": \"Andrés Sebastián\",\r\n            \"apellido\": \"Villalba Peña\",\r\n            \"correo\": \"andres.villalba@roshka.com\",\r\n            \"porcentajeTrabajo\": 10.0,\r\n            \"fechaEntrada\": \"2024-01-14\",\r\n            \"fechaFin\": \"2024-05-14\"\r\n        },\r\n        {\r\n            \"idUsuario\": 11,\r\n            \"nombre\": \"Camila Victoria\",\r\n            \"apellido\": \"Duarte Silva\",\r\n            \"correo\": \"camila.duarte@roshka.com\",\r\n            \"porcentajeTrabajo\": 5.0,\r\n            \"fechaEntrada\": \"2024-01-14\",\r\n            \"fechaFin\": \"2024-06-14\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/operations/team/33",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"operations",
+								"team",
+								"33"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/v1/admin/operations/team/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcEBvcC5jb20iLCJyb2wiOjQsImV4cCI6MTc1ODgxNTQwMywiaWF0IjoxNzU4ODA4MjAzfQ.I_7DNSAIZLxKzpLxp22e-RRH0P5gNBv3GfQYBfNhP1k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/operations/team/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"operations",
+								"team",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/v1/admin/operations/clientes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcEBvcC5jb20iLCJyb2wiOjQsImV4cCI6MTc1ODg2MDY3MCwiaWF0IjoxNzU4ODUzNDcwfQ.Gd2ubeX1p9mjtwEy3XNsG-9T_-SAqkrtb4fxmkw1zHo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/operations/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"operations",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/v1/admin/operations/clientes/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcEBvcC5jb20iLCJyb2wiOjIsImV4cCI6MTc1OTM1MDYxOSwiaWF0IjoxNzU5MzQzNDE5fQ.7Wt9SO78XJdd_MZrFVWv1ioCT_tDF-TVWvGhZdEQWqY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/operations/clientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"operations",
+								"clientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/v1/admin/operations/clientes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcEBvcC5jb20iLCJyb2wiOjQsImV4cCI6MTc1ODg2MDY3MCwiaWF0IjoxNzU4ODUzNDcwfQ.Gd2ubeX1p9mjtwEy3XNsG-9T_-SAqkrtb4fxmkw1zHo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Cliente Ejemplo\",\r\n  \"nroTelefono\": \"+595123456789\",\r\n  \"correo\": \"cliente@ejemplo.com\",\r\n  \"ruc\": \"123456789\",\r\n  \"fechaCreacion\": \"2025-09-25T10:30:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/operations/clientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"operations",
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/v1/admin/operations/clientes/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcEBvcC5jb20iLCJyb2wiOjQsImV4cCI6MTc1ODg2MDY3MCwiaWF0IjoxNzU4ODUzNDcwfQ.Gd2ubeX1p9mjtwEy3XNsG-9T_-SAqkrtb4fxmkw1zHo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Cliente Actualizado\",\r\n  \"nroTelefono\": \"+595987654321\",\r\n  \"correo\": \"nuevo@ejemplo.com\",\r\n  \"ruc\": \"987654321\",\r\n  \"fechaCreacion\": \"2025-09-25T11:00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/operations/clientes/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"operations",
+								"clientes",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/v1/admin/operations/clientes/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcEBvcC5jb20iLCJyb2wiOjQsImV4cCI6MTc1ODg2MDk0OSwiaWF0IjoxNzU4ODUzNzQ5fQ.7rYY2tT3MRDO77kIoYlyiMYtGR2dyRtMi_Dvhc5mHus",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/operations/clientes/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"operations",
+								"clientes",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/v1/admin/operations/tecnologias",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcEBvcC5jb20iLCJyb2wiOjQsImV4cCI6MTc1ODg2MjI1NSwiaWF0IjoxNzU4ODU1MDU1fQ.gdZWuYquHMgNtFl4nKYEDJIYEjsS97y8VvYu0H5QhP8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/operations/tecnologias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"operations",
+								"tecnologias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/v1/admin/operations/tecnologias/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcEBvcC5jb20iLCJyb2wiOjQsImV4cCI6MTc1ODg2MjI1NSwiaWF0IjoxNzU4ODU1MDU1fQ.gdZWuYquHMgNtFl4nKYEDJIYEjsS97y8VvYu0H5QhP8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/operations/tecnologias/20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"operations",
+								"tecnologias",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/v1/admin/operations/tecnologias",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcEBvcC5jb20iLCJyb2wiOjQsImV4cCI6MTc1ODg2MjI1NSwiaWF0IjoxNzU4ODU1MDU1fQ.gdZWuYquHMgNtFl4nKYEDJIYEjsS97y8VvYu0H5QhP8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Test\",\r\n  \"descripcion\": \"Test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/operations/tecnologias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"operations",
+								"tecnologias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/v1/admin/operations/tecnologias/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcEBvcC5jb20iLCJyb2wiOjQsImV4cCI6MTc1ODg2MjI1NSwiaWF0IjoxNzU4ODU1MDU1fQ.gdZWuYquHMgNtFl4nKYEDJIYEjsS97y8VvYu0H5QhP8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Test1\",\r\n  \"descripcion\": \"Test1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/operations/tecnologias/20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"operations",
+								"tecnologias",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/v1/admin/operations/tecnologias/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJvcEBvcC5jb20iLCJyb2wiOjQsImV4cCI6MTc1ODg2MjI1NSwiaWF0IjoxNzU4ODU1MDU1fQ.gdZWuYquHMgNtFl4nKYEDJIYEjsS97y8VvYu0H5QhP8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/operations/tecnologias/20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"operations",
+								"tecnologias",
+								"20"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AS",
+			"item": [
+				{
+					"name": "Listar dispositivos ASIGNADO/NO ASIGNADOS (AS)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODgzNjU1MywiaWF0IjoxNzU4ODI5MzUzfQ.emXEruwd0xp43sB4IBfWb0ZthylWHIWyLWC5gXgP_kI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/sysadmin/devices/allDevices",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sysadmin",
+								"devices",
+								"allDevices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar los tipos de dispositivos (AS)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODgxMzEwNiwiaWF0IjoxNzU4ODA1OTA2fQ.iT07MXWgbiKiKUgts8NzBisjwmuosWwCCXTtA_Mu9CE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/sysadmin/devices/getDeviceTypes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"sysadmin",
+								"devices",
+								"getDeviceTypes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar los tipos de dispositivos (AS) Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODgxMzEwNiwiaWF0IjoxNzU4ODA1OTA2fQ.iT07MXWgbiKiKUgts8NzBisjwmuosWwCCXTtA_Mu9CE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/sysadmin/devices/getDeviceTypes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"sysadmin",
+								"devices",
+								"getDeviceTypes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar las solicitudes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODk5NTYyNywiaWF0IjoxNzU4OTg4NDI3fQ.Hmr5wTBAMRps5eNSB02RmwyXnvMU0RMSOu0aF3-EVFo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/sysadmin/allRequests",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sysadmin",
+								"allRequests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar dispositivos en una ubicacion",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1OTMzNjI5MiwiaWF0IjoxNzU5MzI5MDkyfQ.VUaykDmG1wCw0CPLKEYuoDblz78xY0Y30Vm9E5kqx0E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/sysadmin/ubicaciones/1/devices",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sysadmin",
+								"ubicaciones",
+								"1",
+								"devices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar una solicitud",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODk5NTYyNywiaWF0IjoxNzU4OTg4NDI3fQ.Hmr5wTBAMRps5eNSB02RmwyXnvMU0RMSOu0aF3-EVFo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/sysadmin/allRequests",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sysadmin",
+								"allRequests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar los dispositivos sin duenho (AS)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1OTM3MzY0NiwiaWF0IjoxNzU5MzY2NDQ2fQ.viBWBF0_f844F5GEBACQ3OfYagcuG9dwSN8pBHkQk28",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/sysadmin/devices/allDevicesWithoutOwner",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sysadmin",
+								"devices",
+								"allDevicesWithoutOwner"
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "tipoDispositivo",
+									"disabled": true
+								},
+								{
+									"key": "filterValue",
+									"value": "3",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar un dispositivo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODgyMDE0OSwiaWF0IjoxNzU4ODEyOTQ5fQ.T5d8IxffwjXgssfNdlqbZMkPghFpgVqX7QuXUMlG36s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/sysadmin/devices/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"sysadmin",
+								"devices",
+								""
+							],
+							"query": [
+								{
+									"key": "sortBy",
+									"value": "tipoDispositivo",
+									"disabled": true
+								},
+								{
+									"key": "filterValue",
+									"value": "3",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obtener todas las ubicaciones (AS)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODgzNzEwMCwiaWF0IjoxNzU4ODI5OTAwfQ.qVJhgLlFjhTrCZA5JImSJTvekJ76MZujjXT75ex3Z1U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/sysadmin/ubicaciones/getAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sysadmin",
+								"ubicaciones",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar todas las Asignaciones",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODgyOTI4OSwiaWF0IjoxNzU4ODIyMDg5fQ.WR5xr79hyPUed9C4LbKJQivV6MzTJE3dMWJOSgG7Lcc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/sysadmin/deviceAssignments/listAssignments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"sysadmin",
+								"deviceAssignments",
+								"listAssignments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar una asignacion",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1OTM2ODAwNywiaWF0IjoxNzU5MzYwODA3fQ.ffCsMwsfEd5vkoZblQLytuSsglnYf7R27EO9TIbxZNM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/sysadmin/deviceAssignments/getAssignment/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sysadmin",
+								"deviceAssignments",
+								"getAssignment",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar los tipos de dispositivos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1OTAzMTcxNywiaWF0IjoxNzU5MDI0NTE3fQ.eWn6oXxuTRYFlX-VYgwVEyTVkeCFqbnGzCPpGKGwXpU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\":\"mesa prueba\",\n    \"detalle\":\"probando\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/sysadmin/deviceTypes/allTypes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sysadmin",
+								"deviceTypes",
+								"allTypes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar un tipos de dispositivos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1OTA5NTk4MSwiaWF0IjoxNzU5MDg4NzgxfQ.skhqfTY1i7e2fFMBaf6S1k-QrLBVdRoHKMP3vg-0_c4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\":\"mesa prueba\",\n    \"detalle\":\"probando\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/sysadmin/deviceTypes/getTypeDevice/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sysadmin",
+								"deviceTypes",
+								"getTypeDevice",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear un nuevo tipo de Dispositivo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1OTI1MTIzMSwiaWF0IjoxNzU5MjQ0MDMxfQ.y7o23VVT6R5H8rM1Al0SmAw-hVilnln3K543G4SyjXw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\":\"mesa prueba123123\",\n    \"detalle\":\"probando\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/sysadmin/deviceTypes/createTypeDevice",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sysadmin",
+								"deviceTypes",
+								"createTypeDevice"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar un nuevo tipo de dispositivo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1OTAzMjE1MCwiaWF0IjoxNzU5MDI0OTUwfQ.ghBOy_SpWjg1arMzntCtuIqfrmOw0m693yrrSTn4-V0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\":\"PROBANDO CAMBIAR NOMBRE\",\n    \"detalle\":\"Actualizando\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/sysadmin/deviceTypes/updateTypeDevice/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sysadmin",
+								"deviceTypes",
+								"updateTypeDevice",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar/desactivar un tipo de dispositivo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1OTAzMjIxOSwiaWF0IjoxNzU5MDI1MDE5fQ.-3l4Es-q6en5679j7sA02A9iSxl-YOaalAtygrG1mIQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/sysadmin/deviceTypes/deleteTypeDevice/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sysadmin",
+								"deviceTypes",
+								"deleteTypeDevice",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear una ubicacion (AS)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODgzNzU2MSwiaWF0IjoxNzU4ODMwMzYxfQ.HD9x_UR7FR8KjYSdZobDW3VZxTeS0IJ4deSKYfzc3nE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\":\"SALA PRUEBA 23\",\n    \"estado\":\"A\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/sysadmin/ubicaciones/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sysadmin",
+								"ubicaciones",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actualizar una ubicacion (AS)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODgxMjA3MiwiaWF0IjoxNzU4ODA0ODcyfQ.bxRFPeaRqOQkProFE6BiRGVEjsGVQCK4I-3EwxsFybo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\":\"PROBANDO CAMBIAR NOMBRE\",\n    \"estado\":\"A\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/sysadmin/ubicaciones/update/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"sysadmin",
+								"ubicaciones",
+								"update",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "eliminar/desactivar una ubicacion (AS)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODgzNzU2MSwiaWF0IjoxNzU4ODMwMzYxfQ.HD9x_UR7FR8KjYSdZobDW3VZxTeS0IJ4deSKYfzc3nE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/sysadmin/ubicaciones/delete/12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sysadmin",
+								"ubicaciones",
+								"delete",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear dispositivo (AS)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODgxMTk4MSwiaWF0IjoxNzU4ODA0NzgxfQ.P3nuQEeoUWOtt5xMk4twQIm-nrdXEA9WxidqhH6t2WI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tipoDispositivo\":1,\n    \"ubicacion\":1,\n    \"nroSerie\":\"PROBANDO REESTRUCTURADO CARPETAS\",\n    \"modelo\":\"MACBOOK AIR\",\n    \"detalle\":\"detalles incluido\",\n    \"fechaFabricacion\":\"2024-03-03\",\n    \"estado\":\"A\",\n    \"categoria\":\"OFICINA\",\n    \"encargado\":null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/sysadmin/devices/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"sysadmin",
+								"devices",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editar un dispositivo (AS)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODgzNzEwMCwiaWF0IjoxNzU4ODI5OTAwfQ.qVJhgLlFjhTrCZA5JImSJTvekJ76MZujjXT75ex3Z1U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tipoDispositivo\": 1,\n    \"nroSerie\": \"PROBANDO REESTRUCTURADO13241234 \",\n    \"modelo\": \"MACBOOK AIR\",\n    \"detalle\": \"actualizandoooo\",\n    \"fechaFabricacion\": \"2024-03-03\",\n    \"estado\": \"A\",\n    \"categoria\": \"OFICINA\",\n    \"encargado\": 3,\n    \"ubicacion\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/sysadmin/devices/update/20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sysadmin",
+								"devices",
+								"update",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desactivar un dispositivo (AS)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODgzNzEwMCwiaWF0IjoxNzU4ODI5OTAwfQ.qVJhgLlFjhTrCZA5JImSJTvekJ76MZujjXT75ex3Z1U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/sysadmin/devices/delete/20",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sysadmin",
+								"devices",
+								"delete",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear una nueva Asignacion de dispositivo a un usuario (AS)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODgzMDAzMSwiaWF0IjoxNzU4ODIyODMxfQ.6s_2d3GJg8f3ejA-V5hXV0R3Hm3XwUntBP2IoyxPzvs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/sysadmin/deviceAssignments/createAssignment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"sysadmin",
+								"deviceAssignments",
+								"createAssignment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar una asignacion de Dispositivo (AS)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODgzMDU4MCwiaWF0IjoxNzU4ODIzMzgwfQ.JkcWO0uOtAJCUHeSZRFFCdIv0sY7wV6xhL3XE18rRfE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"idDispositivoAsignado\": 4,\n        \"idDispositivo\": 5,\n        \"fechaEntrega\": \"2025-09-02\",\n        \"fechaDevolucion\": \"2025-09-03\",\n        \"estadoAsignacion\": \"U\",\n        \"observaciones\": \"dispositivo devuelto\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/sysadmin/deviceAssignments/updateAssignment/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"sysadmin",
+								"deviceAssignments",
+								"updateAssignment",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar una asignacion (AS)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODgzMTg1OCwiaWF0IjoxNzU4ODI0NjU4fQ.B7rQAggnX5PHZH8BCcNBKcQNRMEfaHLvr_Qt5JRQwoo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/sysadmin/deviceAssignments/deleteAssignment/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"sysadmin",
+								"deviceAssignments",
+								"deleteAssignment",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aceptar solicitudes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODk5NTYyNywiaWF0IjoxNzU4OTg4NDI3fQ.Hmr5wTBAMRps5eNSB02RmwyXnvMU0RMSOu0aF3-EVFo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/admin/sysadmin/deviceRequest/10/accept",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"sysadmin",
+								"deviceRequest",
+								"10",
+								"accept"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rechazar Solicitudes (AS)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODgzNTI0MiwiaWF0IjoxNzU4ODI4MDQyfQ.JXCxi0kdfdUl6BMiyuz2RyjlSXriGUrL63iN7bpvuNo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/sysadmin/deviceRequest/10/reject",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"sysadmin",
+								"deviceRequest",
+								"10",
+								"reject"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "USER",
+			"item": [
+				{
+					"name": "usuarios/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWNpYS5zaWx2YUByb3Noa2EuY29tIiwicm9sIjoxLCJleHAiOjE3NTgwNjUyMjksImlhdCI6MTc1ODA1ODAyOX0.1G1tphIXKbPSrtKneqjl_JNMAXY0FnmcJf9kT3gT6JY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/usuarios/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET usuarios/me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWNpYS5zaWx2YUByb3Noa2EuY29tIiwicm9sIjoxLCJleHAiOjE3NTgxMjI3NzYsImlhdCI6MTc1ODExNTU3Nn0.kgIsRR_lsVLmVi_CSHzsyGI9_5zQSHY3s4DvjFP62QA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/usuarios/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usuarios/me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWNpYS5zaWx2YUByb3Noa2EuY29tIiwicm9sIjoxLCJleHAiOjE3NTgwNTY1OTcsImlhdCI6MTc1ODA0OTM5N30.SVHGCnMM-dc8zxWCBGDJ2Rj2Ib-IQmf4LKRLJKimTzQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"JUAN\",\r\n    \"apellido\": \"Lopez\",\r\n    \"nroCedula\": 3745621,\r\n    \"correo\": \"cpatino278@gmail.com\",\r\n    \"idRol\": 1,\r\n    \"diasVacaciones\": 12,\r\n    \"estado\": \"A\",\r\n    \"telefono\": \"123\",\r\n    \"idEquipo\": 9,\r\n    \"idCargo\": 7,\r\n    \"fechaNacimiento\": \"1995-07-12\",\r\n    \"diasVacacionesRestante\": 0,\r\n    \"requiereCambioContrasena\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/usuarios/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "usuarios/solicitudes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWNpYS5zaWx2YUByb3Noa2EuY29tIiwicm9sIjoxLCJleHAiOjE3NTgxNDQ2NTgsImlhdCI6MTc1ODEzNzQ1OH0.5CSrR8OpeeqngXefr_4xzbl9PtuQOVngqfnrA4OkrSc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/usuarios/solicitudes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"solicitudes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tipo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsdWNpYS5zaWx2YUByb3Noa2EuY29tIiwicm9sIjoxLCJleHAiOjE3NTgxNDQ2NTgsImlhdCI6MTc1ODEzNzQ1OH0.5CSrR8OpeeqngXefr_4xzbl9PtuQOVngqfnrA4OkrSc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/usuarios/solicitudes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"solicitudes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear nueva solicitud permiso",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODg0OTM3NiwiaWF0IjoxNzU4ODQyMTc2fQ.WU9oMjndscUopQR9qt0f4aTL6LCabcbBINKE2vdIOXI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id_tipo_permiso\": 6,\n  \"fecha_inicio\": \"2025-09-27\",\n  \"cant_dias\": 3,\n  \"comentario\": \"Permiso por rendir examen parcial\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/usuarios/crear_permiso",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"crear_permiso"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear nueva solicitud dispositivo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODk5NTYyNywiaWF0IjoxNzU4OTg4NDI3fQ.Hmr5wTBAMRps5eNSB02RmwyXnvMU0RMSOu0aF3-EVFo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id_tipo_dispositivo\": 5,\n    \"comentario\": \"Mi mouse se rompio\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/usuarios/pedir_dispositivo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"pedir_dispositivo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear nueva solicitud beneficio",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhc0Bhcy5jb20iLCJyb2wiOjMsImV4cCI6MTc1ODg0OTM3NiwiaWF0IjoxNzU4ODQyMTc2fQ.WU9oMjndscUopQR9qt0f4aTL6LCabcbBINKE2vdIOXI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id_tipo_permiso\": 6,\n  \"fecha_inicio\": \"2025-09-27\",\n  \"cant_dias\": 3,\n  \"comentario\": \"Permiso por rendir examen parcial\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/usuarios/crear_permiso",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"usuarios",
+								"crear_permiso"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\n\n// ROl 4 : Operaciones\n// {\n//     \"correo\":\"op@op.com\",\n//     \"contrasena\":\"op\"\n// }\n\n// {\n//     \"correo\":\"admin@admin.com\",\n//     \"contrasena\":\"admin\"\n// }\n\n// ROL 1 : TH\n{\n    \"correo\":\"th@th.com\",\n    \"contrasena\":\"th\"\n}\n\n\n// {\n//     \"correo\":\"as@as.com\",\n//     \"contrasena\":\"as\"\n// }\n\n\n// Usuario fictiocion no en la bd \n\n// {\n\n// }\n\n// {\n//     \"correo\":\"ssss@ssss.com\",\n//     \"contrasena\":\"aaaa\"\n// }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

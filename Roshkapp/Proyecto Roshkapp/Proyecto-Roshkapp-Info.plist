@@ -4,10 +4,11 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Lato-Regular.ttf</string>
-		<string>Lato-Bold.ttf</string>
-		<string>Lato-Light.ttf</string>
-		<string>Lato-Black.ttf</string>
+		<string>dinroundpro_black.otf</string>
+		<string>dinroundpro_bold.otf</string>
+		<string>dinroundpro_light.otf</string>
+		<string>dinroundpro_medi.otf</string>
+		<string>dinroundpro_regular.otf</string>
 	</array>
 </dict>
 </plist>

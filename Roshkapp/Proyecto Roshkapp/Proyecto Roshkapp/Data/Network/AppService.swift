@@ -12,7 +12,13 @@ import Foundation
 
 final class AppService
 {
-    
+    private let urlSession: URLSession
+    init() {
+        let config = URLSessionConfiguration.default
+        config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        config.urlCache = nil
+        self.urlSession = URLSession(configuration: config)
+    }
     //MARK: Cambiar que la URL sea de donde se envie
     func execute<T: Decodable>(from URLString: String,
                                method: MethodType,
@@ -28,6 +34,17 @@ final class AppService
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        // Para siempre traer lo ultimo, no la cache
+        request.setValue("no-cache", forHTTPHeaderField: "Cache-Control")
+        request.setValue("no-cache", forHTTPHeaderField: "Pragma")
+        request.cachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        request.timeoutInterval = 30
+        
+        var authToken = token
+                if authToken == nil {
+                    // Recuperar token del Keychain si no se pasa
+                    authToken = try? KeychainManager.shared.getAccessToken()
+                }
         
         // Si es un request after-login, tiene que enviar el token
         if token != nil
@@ -35,8 +52,6 @@ final class AppService
             // print("Tiene token")
             request.setValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
         }
-        
-        
         
         if let body = body{
             let jsonData = try JSONEncoder().encode(body)
@@ -46,10 +61,13 @@ final class AppService
 //            }
         }
         
-        
-        
+        print("--- DEBUG REQUEST ---")
+        print("URL: \(url)")
+        print("Headers: \(request.allHTTPHeaderFields ?? [:])")
+        print("---------------------")
+                
         do {
-            let (data, response) = try await URLSession.shared.data(for: request)
+            let (data, response) = try await urlSession.data(for: request)
             
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw ApiError.invalidResponse(statusCode: -1)
